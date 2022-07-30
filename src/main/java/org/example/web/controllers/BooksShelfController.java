@@ -4,6 +4,7 @@ import lombok.extern.log4j.Log4j;
 import org.example.app.services.BookService;
 import org.example.web.dto.Book;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Log4j
 @Controller
 @RequestMapping(value = "books")
+@Scope("singleton")
 public class BooksShelfController {
 
     private final BookService bookService;
@@ -25,7 +27,7 @@ public class BooksShelfController {
 
     @GetMapping("/shelf")
     public String books(Model model){
-        log.info("got book shelf");
+        log.info(this.toString());
         model.addAttribute("book", new Book());
         model.addAttribute("bookList", bookService.getAllBooks());
         return "book_shelf";
@@ -43,7 +45,7 @@ public class BooksShelfController {
     }
 
     @PostMapping("/remove")
-    public String removeBook(@RequestParam(value = "bookIdToRemove") Integer bookIdRemove){
+    public String removeBook(@RequestParam(value = "bookIdToRemove") String bookIdRemove){
         if(bookService.removeBookId(bookIdRemove)){
             return "redirect:/books/shelf";
         }else{

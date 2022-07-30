@@ -25,12 +25,13 @@
       }
 
       th,td{
-          border-collapse: 1px solid #ddd;
+          border-bottom: 1px solid #ddd;
       }
     </style>
 </head>
 <body>
     <div id="root_container">
+         <!--/*@thymesVar id="book" type="java"*/-->
          <form method="post" th:action="@{/books/save}" th:object="${book}">
              <table>
                  <tr>

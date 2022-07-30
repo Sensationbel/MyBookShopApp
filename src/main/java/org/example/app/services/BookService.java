@@ -1,5 +1,6 @@
 package org.example.app.services;
 
+import lombok.extern.log4j.Log4j;
 import org.example.app.repository.BookRepository;
 import org.example.app.repository.ProjectRepository;
 import org.example.web.dto.Book;
@@ -9,6 +10,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
+@Log4j
 public class BookService {
 
     private final ProjectRepository<Book> bookRepo;
@@ -26,7 +28,7 @@ public class BookService {
         bookRepo.store(book);
     }
 
-    public boolean removeBookId(Integer bookIdRemove) {
+    public boolean removeBookId(String bookIdRemove) {
         return bookRepo.removeItemById(bookIdRemove);
     }
 
@@ -45,7 +47,13 @@ public class BookService {
             case ("size") -> bookRepo.removeItemBySize(request[1]);
             default -> false;
         };
+    }
 
+    private void defaultInit() {
+        log.info("default INIT in book service");
+    }
 
+    private void defaultDestroy() {
+        log.info("default DESTROY in book service");
     }
 }
