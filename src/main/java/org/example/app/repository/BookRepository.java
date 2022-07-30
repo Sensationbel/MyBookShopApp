@@ -1,4 +1,4 @@
-package org.example.app.services;
+package org.example.app.repository;
 
 import lombok.extern.log4j.Log4j;
 import org.example.web.dto.Book;

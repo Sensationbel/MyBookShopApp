@@ -1,7 +1,6 @@
 package org.example.web.controllers;
 
 import lombok.extern.log4j.Log4j;
-import org.example.app.services.BookRepository;
 import org.example.app.services.BookService;
 import org.example.web.dto.Book;
 import org.springframework.beans.factory.annotation.Autowired;

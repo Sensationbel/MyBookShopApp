@@ -1,7 +1,8 @@
 package org.example.app.services;
 
+import org.example.app.repository.BookRepository;
+import org.example.app.repository.ProjectRepository;
 import org.example.web.dto.Book;
-import org.springframework.beans.MutablePropertyValues;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -30,14 +31,9 @@ public class BookService {
     }
 
     public boolean checkBookOfEmpty(Book book) {
-        if(book.getAuthor().isEmpty()){
-            if(book.getTitle().isEmpty()){
-                if(book.getSize() == null){
-                    return false;
-                }
-            }
-        }
-        return true;
+        return !book.getAuthor().isEmpty() ||
+                !book.getTitle().isEmpty() ||
+                book.getSize() != null;
     }
 
     public boolean removeBookRegex(String regex) {
