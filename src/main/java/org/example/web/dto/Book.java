@@ -12,7 +12,7 @@ import javax.validation.constraints.NotNull;
 @ToString
 public class Book {
 
-    private String id;
+    private Integer id;
     private String author;
     private String title;
     @NotNull

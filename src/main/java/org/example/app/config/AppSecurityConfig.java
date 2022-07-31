@@ -36,6 +36,7 @@ public class AppSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         log.info("config HTTP security");
+        http.headers().frameOptions().disable(); // для рендеринга БД
         http
                 .csrf().disable()
                 .authorizeRequests()
