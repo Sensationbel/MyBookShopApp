@@ -5,7 +5,7 @@ import lombok.Getter;
 
 @AllArgsConstructor
 @Getter
-public class BookShelfLoginException extends Exception {
+public class BookShelfException extends Exception {
 
     private final String message;
 
