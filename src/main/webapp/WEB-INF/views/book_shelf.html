@@ -68,21 +68,22 @@
                     <input type="text" placeholder="id number" th:field="*{id}">
                     <input type="submit" value="remove">
                 </td>
-                <td th:if="${#fields.hasErrors()}">
+                <td th:if="${#fields.hasErrors('id')}">
                     <p th:errors="*{id}"></p>
                 </td>
             </tr>
         </table>
     </form>
 
-    <form method="post" th:action="@{/books/removeByRegex}">
+    <form method="post" th:action="@{/books/removeByRegex}" th:object="${regexToRemove}">
         <table>
             <tr>
                 <td>
-                    <input type="text" placeholder="regex" th:name="queryRegex"/>
-                </td>
-                <td>
+                    <input type="text" placeholder="regex" th:field="*{regex}">
                     <input type="submit" value="remove by regex">
+                </td>
+                <td th:if="${#fields.hasErrors('regex')}">
+                    <p th:errors="*{regex}"></p>
                 </td>
             </tr>
         </table>

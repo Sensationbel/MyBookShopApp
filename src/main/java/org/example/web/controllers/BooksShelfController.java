@@ -5,11 +5,13 @@ import org.example.app.exeptions.BookShelfException;
 import org.example.app.services.BookService;
 import org.example.web.dto.Book;
 import org.example.web.dto.BookIdToRemove;
+import org.example.web.dto.RegexToRemove;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -36,6 +38,7 @@ public class BooksShelfController {
         log.info(this.toString());
         model.addAttribute("book", new Book());
         model.addAttribute("bookIdToRemove", new BookIdToRemove());
+        model.addAttribute("regexToRemove", new RegexToRemove());
         model.addAttribute("bookList", bookService.getAllBooks());
         return "book_shelf";
     }
@@ -46,6 +49,7 @@ public class BooksShelfController {
         if (bindingResult.hasErrors()) {
             model.addAttribute("book", book);
             model.addAttribute("bookIdToRemove", new BookIdToRemove());
+            model.addAttribute("regexToRemove", new RegexToRemove());
             model.addAttribute("bookList", bookService.getAllBooks());
             return "book_shelf";
         }else {
@@ -57,10 +61,11 @@ public class BooksShelfController {
     }
 
     @PostMapping("/remove")
-    public String removeBook(@Valid BookIdToRemove bookIdToRemove, BindingResult bindingResult, Model model){
+    public String removeBook(@Valid BookIdToRemove bookIdToRemove, Errors errors, Model model){
 
-        if(bindingResult.hasErrors()){
+        if(errors.hasErrors()){
             model.addAttribute("book", new Book());
+            model.addAttribute("regexToRemove", new RegexToRemove());
             model.addAttribute("bookList", bookService.getAllBooks());
             log.info("id not found");
             return "book_shelf";
@@ -70,11 +75,15 @@ public class BooksShelfController {
     }
 
     @PostMapping("/removeByRegex")
-    public String removeBooksByRegex(@RequestParam(value = "queryRegex") String regex){
-        if(bookService.removeBookRegex(regex)){
-            return "redirect:/books/shelf";
-        }else{
-            log.info("book by " + regex + " not found");
+    public String removeBooksByRegex(@Valid RegexToRemove regexToRemove, Errors errors, Model model){
+        if(errors.hasErrors()){
+            model.addAttribute("book", new Book());
+            model.addAttribute("bookIdToRemove", new BookIdToRemove());
+            model.addAttribute("bookList", bookService.getAllBooks());
+            log.info("book by " + regexToRemove.getRegex() + " is not corrected");
+            return "book_shelf";
+        } else{
+            bookService.removeBookRegex(regexToRemove.getRegex());
             return "redirect:/books/shelf";
         }
     }
