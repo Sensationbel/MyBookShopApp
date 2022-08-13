@@ -2,6 +2,7 @@ package com.example.MyBookShopAPP.service;
 
 import com.example.MyBookShopAPP.data.Book;
 import com.example.MyBookShopAPP.dto.BooksDto;
+import com.example.MyBookShopAPP.repositories.jpa_interfaces.BooksInterfaces;
 import lombok.RequiredArgsConstructor;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
@@ -14,18 +15,17 @@ import java.util.List;
 @RequiredArgsConstructor
 public class BookService {
 
-    private final JdbcTemplate jdbcTemplate;
+    private final BooksInterfaces bi;
     public List<BooksDto> getBooksData() {
-        List<BooksDto> books = jdbcTemplate.query("SELECT b.*, a.last_name FROM BOOKS b \n" +
-                "JOIN AUTHORS a ON a.id=b.author_id; ", (ResultSet rs, int rowNum) ->{
-            BooksDto book = new BooksDto();
-            book.setId(rs.getInt("id"));
-            book.setAuthor(rs.getString("last_name"));
-            book.setTitle(rs.getString("title"));
-            book.setPriceOld(rs.getString("price_Old"));
-            book.setPrice(rs.getString("price"));
-            return book;
+        List<BooksDto> books = new ArrayList<>();
+            bi.findALL().forEach(book ->{
+            BooksDto booksDto = new BooksDto();
+            booksDto.setAuthor(book.getAuthor().getLast_name());
+            booksDto.setTitle(book.getTitle());
+            booksDto.setPriceOld(book.getPrice_Old());
+            booksDto.setPrice(book.getPrice());
+            books.add(booksDto);
         });
-        return new ArrayList<>(books);
+        return books;
     }
 }

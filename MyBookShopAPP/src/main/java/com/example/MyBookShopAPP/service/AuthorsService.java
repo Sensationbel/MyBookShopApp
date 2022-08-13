@@ -1,6 +1,7 @@
 package com.example.MyBookShopAPP.service;
 
 import com.example.MyBookShopAPP.dto.AuthorsDto;
+import com.example.MyBookShopAPP.repositories.jpa_interfaces.AuthorsInterfaces;
 import lombok.RequiredArgsConstructor;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
@@ -13,15 +14,17 @@ import java.util.List;
 @RequiredArgsConstructor
 public class AuthorsService {
 
-    private final JdbcTemplate jdbcTemplate;
+    private final AuthorsInterfaces ai;
 
     public List<AuthorsDto> getAuthorsData(){
-        List<AuthorsDto> authors= jdbcTemplate.query("SELECT first_name f, last_name l FROM AUTHORS", (ResultSet rs, int rowNum) -> {
+        List<AuthorsDto> authors = new ArrayList<>();
+        ai.findALL().forEach(author ->{
             AuthorsDto authorsDto = new AuthorsDto();
-            authorsDto.setFirstName(rs.getString("first_name"));
-            authorsDto.setLastName(rs.getString("last_name"));
-            return authorsDto;
+            authorsDto.setFirstName(author.getFirst_name());
+            authorsDto.setLastName(author.getLast_name());
+
+            authors.add(authorsDto);
         });
-        return new ArrayList<>(authors);
+        return authors;
     }
 }
