@@ -1,1 +1,0 @@
-INSERT INTO books(author, title, size) VALUES ('Bulaukin','book',129);
