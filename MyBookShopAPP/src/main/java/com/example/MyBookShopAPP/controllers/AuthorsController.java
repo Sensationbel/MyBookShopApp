@@ -19,6 +19,7 @@ public class AuthorsController {
     @GetMapping("/authors")
     public String authors(Model model){
         model.addAttribute("authorsData", authorsService.getAuthorsData());
+        model.addAttribute("searchPlaceholder", "new search placeholder");
         return "authors/index";
     }
 

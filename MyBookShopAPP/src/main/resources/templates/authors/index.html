@@ -29,6 +29,17 @@
     <!--[if lt IE 9]>
     <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
     <script defer src="/assets/js/scripts.min.js?v=59641147"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function (){
+            $("#locales").change(function (){
+                var selectedOption = $("#locales").val();
+                if(selectedOption != ''){
+                    window.location.replace('?lang='+selectedOption);
+                }
+            });
+        });
+    </script>
 </head>
 <body class="Site">
 <!--if lt IE 8
@@ -64,6 +75,7 @@
                         <div class="search">
                             <form class="form form_search" action="#" method="post" data-searchlimit="20">
                                 <input class="search-input" id="query" name="query" type="text"
+                                       th:placeholder="#{searchbar.placeholder}"
                                        placeholder="Search over 30 million book titles" value=""/>
                                 <button class="search-button" type="submit" name="search" id="search">Поиск
                                 </button>
@@ -117,15 +129,20 @@
         <div class="wrap">
             <nav class="menuModal" id="navigate">
                 <ul class="menu menu_main">
-                    <li class="menu-item"><a class="menu-link" th:href="@{/booksShop/main}" href="/index.html">Главная</a>
+                    <li class="menu-item"><a class="menu-link" th:href="@{/booksShop/main}" href="/index.html"
+                                             th:text="#{topbar.main}"></a>
                     </li>
-                    <li class="menu-item"><a class="menu-link" th:href="@{/booksShop/genres}" href="/genres/index.html">Жанры</a>
+                    <li class="menu-item"><a class="menu-link" th:href="@{/booksShop/genres}" href="/genres/index.html"
+                    th:text="#{topbar.genres}"></a>
                     </li>
-                    <li class="menu-item"><a class="menu-link" href="/books/recent.html">Новинки</a>
+                    <li class="menu-item"><a class="menu-link" href="/books/recent.html"
+                    th:text="#{topbar.news}"></a>
                     </li>
-                    <li class="menu-item"><a class="menu-link" href="/books/popular.html">Популярное</a>
+                    <li class="menu-item"><a class="menu-link" href="/books/popular.html"
+                    th:text="#{topbar.popular}"></a>
                     </li>
-                    <li class="menu-item menu-item_ACTIVE"><a class="menu-link" th:href="@{booksShop/authors}" href="/authors/index.html">Авторы</a>
+                    <li class="menu-item menu-item_ACTIVE"><a class="menu-link" th:href="@{booksShop/authors}"
+                                                              href="/authors/index.html" th:text="#{topbar.authors}"></a>
                     </li>
                 </ul>
             </nav>
@@ -354,90 +371,7 @@
                                 <a href="/authors/slug.html" th:text="${authors.lastName}"></a>
                             </div>
                         </div>
-<!--                        <h2 class="Authors-title" id="shh">Щ-->
-<!--                        </h2>-->
-<!--                        <div class="Authors-letter">-->
-<!--                            <div class="Authors-item"><a href="/authors/slug.html">Щеглова Ирина</a>-->
-<!--                            </div>-->
-<!--                            <div class="Authors-item"><a href="/authors/slug.html">Щепетнов Евгений</a>-->
-<!--                            </div>-->
-<!--                            <div class="Authors-item"><a href="/authors/slug.html">Щерба Наталья</a>-->
-<!--                            </div>-->
-<!--                            <div class="Authors-item"><a href="/authors/slug.html">Щукин Михаил</a>-->
-<!--                            </div>-->
-<!--                        </div>-->
-<!--                        <h2 class="Authors-title" id="ye">Э-->
-<!--                        </h2>-->
-<!--                        <div class="Authors-letter">-->
-<!--                            <div class="Authors-item"><a href="/authors/slug.html">Эванс Хэрриет</a>-->
-<!--                            </div>-->
-<!--                            <div class="Authors-item"><a href="/authors/slug.html">Эвенсон Брайан</a>-->
-<!--                            </div>-->
-<!--                            <div class="Authors-item"><a href="/authors/slug.html">Эгер Эдит</a>-->
-<!--                            </div>-->
-<!--                            <div class="Authors-item"><a href="/authors/slug.html">Эдблад Патрик</a>-->
-<!--                            </div>-->
-<!--                            <div class="Authors-item"><a href="/authors/slug.html">Эдвардссон Маттиас</a>-->
-<!--                            </div>-->
-<!--                            <div class="Authors-item"><a href="/authors/slug.html">Элизабет МакНиллбет</a>-->
-<!--                            </div>-->
-<!--                            <div class="Authors-item"><a href="/authors/slug.html">Элиот Джордж</a>-->
-<!--                            </div>-->
-<!--                            <div class="Authors-item"><a href="/authors/slug.html">Эллис Джой</a>-->
-<!--                            </div>-->
-<!--                            <div class="Authors-item"><a href="/authors/slug.html">Элтон Бен</a>-->
-<!--                            </div>-->
-<!--                            <div class="Authors-item"><a href="/authors/slug.html">Эльба Ирина</a>-->
-<!--                            </div>-->
-<!--                            <div class="Authors-item"><a href="/authors/slug.html">Эльденберт Марина</a>-->
-<!--                            </div>-->
-<!--                            <div class="Authors-item"><a href="/authors/slug.html">Эльсберг Марк</a>-->
-<!--                            </div>-->
-<!--                            <div class="Authors-item"><a href="/authors/slug.html">Эрикссон Каролина</a>-->
-<!--                            </div>-->
-<!--                            <div class="Authors-item"><a href="/authors/slug.html">Эрикссон Мартин</a>-->
-<!--                            </div>-->
-<!--                            <div class="Authors-item"><a href="/authors/slug.html">Эрлбаум Дженис</a>-->
-<!--                            </div>-->
-<!--                            <div class="Authors-item"><a href="/authors/slug.html">Эрлинг Ирис</a>-->
-<!--                            </div>-->
-<!--                            <div class="Authors-item"><a href="/authors/slug.html">Эрлих Генрих</a>-->
-<!--                            </div>-->
-<!--                            <div class="Authors-item"><a href="/authors/slug.html">Эшбах Андреас</a>-->
-<!--                            </div>-->
-<!--                            <div class="Authors-item"><a href="/authors/slug.html">Эштон Броди</a>-->
-<!--                            </div>-->
-<!--                        </div>-->
-<!--                        <h2 class="Authors-title" id="yu">Ю-->
-<!--                        </h2>-->
-<!--                        <div class="Authors-letter">-->
-<!--                            <div class="Authors-item"><a href="/authors/slug.html">Юнгстедт Мари</a>-->
-<!--                            </div>-->
-<!--                        </div>-->
-<!--                        <h2 class="Authors-title" id="ya">Я-->
-<!--                        </h2>-->
-<!--                        <div class="Authors-letter">-->
-<!--                            <div class="Authors-item"><a href="/authors/slug.html">Яковлева Алена</a>-->
-<!--                            </div>-->
-<!--                            <div class="Authors-item"><a href="/authors/slug.html">Якушевская Влада</a>-->
-<!--                            </div>-->
-<!--                            <div class="Authors-item"><a href="/authors/slug.html">Янг Саманта</a>-->
-<!--                            </div>-->
-<!--                            <div class="Authors-item"><a href="/authors/slug.html">Янг Эдриенн</a>-->
-<!--                            </div>-->
-<!--                            <div class="Authors-item"><a href="/authors/slug.html">Янук Елена</a>-->
-<!--                            </div>-->
-<!--                            <div class="Authors-item"><a href="/authors/slug.html">Янч Джон</a>-->
-<!--                            </div>-->
-<!--                            <div class="Authors-item"><a href="/authors/slug.html">Ярыгин Николай</a>-->
-<!--                            </div>-->
-<!--                            <div class="Authors-item"><a href="/authors/slug.html">Ясинская Марина</a>-->
-<!--                            </div>-->
-<!--                            <div class="Authors-item"><a href="/authors/slug.html">Ясинский Анджей</a>-->
-<!--                            </div>-->
-<!--                            <div class="Authors-item"><a href="/authors/slug.html">Яхина Гузель</a>-->
-<!--                            </div>-->
-<!--                        </div>-->
+<!--                        >-->
                     </div>
                 </div>
             </div>
@@ -523,6 +457,14 @@
                     <li class="menu-item"><a class="menu-link" href="/books/popular.html">Популярное</a>
                     </li>
                     <li class="menu-item"><a class="menu-link" href="/booksShop/authors">Авторы</a>
+                    </li>
+                    <li class="menu-item">
+                        <span>Выбор языка</span>
+                        <select id="locales">
+                            <option value=" "></option>
+                            <option value="en">English</option>
+                            <option value="ru">Русский</option>
+                        </select>
                     </li>
                 </ul>
             </div>

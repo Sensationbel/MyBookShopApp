@@ -20,10 +20,10 @@ insert into authors (id, first_name, last_name) values (19, 'Karlene', 'Granger'
 insert into authors (id, first_name, last_name) values (20, 'Major', 'Mattersley');
 insert into authors (id, first_name, last_name) values (21, 'Hatti', 'Skelbeck');
 
-insert into books (id, price, price_old, title, author_id) values (1, 1642, 1843, 'Bitwolf', 37);
-insert into books (id, price, price_old, title, author_id) values (2, 707, 1451, 'Tres-Zap', 66);
-insert into books (id, price, price_old, title, author_id) values (3, 1590, 2445, 'Daltfresh', 80);
-insert into books (id, price, price_old, title, author_id) values (4, 2951, 2425, 'Namfix', 95);
+insert into books (id, price, price_old, title, author_id) values (1, 1642, 1843, 'Bitwolf', 1);
+insert into books (id, price, price_old, title, author_id) values (2, 707, 1451, 'Tres-Zap', 2);
+insert into books (id, price, price_old, title, author_id) values (3, 1590, 2445, 'Daltfresh', 3);
+insert into books (id, price, price_old, title, author_id) values (4, 2951, 2425, 'Namfix', 4);
 insert into books (id, price, price_old, title, author_id) values (5, 2267, 2139, 'Sonsing', 73);
 insert into books (id, price, price_old, title, author_id) values (6, 2403, 1007, 'Bytecard', 49);
 insert into books (id, price, price_old, title, author_id) values (7, 2271, 3149, 'Tempsoft', 18);
