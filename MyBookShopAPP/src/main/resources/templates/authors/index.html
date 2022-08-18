@@ -58,7 +58,7 @@
                 <div class="row-block Header-logo"><a class="logo" href="/"><img class="logo-image"
                                                                                  src="/assets/img/logo.png"
                                                                                  alt="logo.png"/><span
-                        class="logo-text">BOOKSHOP</span></a>
+                        class="logo-text" th:text="${#strings.toUpperCase('Bookshop ')} + ${#locale.getDisplayName()}">BOOKSHOP</span></a>
                 </div>
                 <div class="Header-searchWrap row-block">
                     <div class="Header-searchLink">
@@ -75,7 +75,9 @@
                         <div class="search">
                             <form class="form form_search" action="#" method="post" data-searchlimit="20">
                                 <input class="search-input" id="query" name="query" type="text"
-                                       th:placeholder="#{searchbar.placeholder}"
+                                       th:placeholder="#{${messageTemplate}(${#dates.format(serverTime, 'hh:mm')},
+                                       #{searchbar.placeholderTextPart1},
+                                       ${placeholderTextPart2})}"
                                        placeholder="Search over 30 million book titles" value=""/>
                                 <button class="search-button" type="submit" name="search" id="search">Поиск
                                 </button>
@@ -130,7 +132,7 @@
             <nav class="menuModal" id="navigate">
                 <ul class="menu menu_main">
                     <li class="menu-item"><a class="menu-link" th:href="@{/booksShop/main}" href="/index.html"
-                                             th:text="#{topbar.main}"></a>
+                                             th:text="${#messages.msg('topbar.main')}"></a>
                     </li>
                     <li class="menu-item"><a class="menu-link" th:href="@{/booksShop/genres}" href="/genres/index.html"
                     th:text="#{topbar.genres}"></a>

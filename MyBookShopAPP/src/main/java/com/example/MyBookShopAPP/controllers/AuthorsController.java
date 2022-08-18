@@ -8,6 +8,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 @Controller
 @RequestMapping("booksShop")
 @Log4j2
@@ -20,6 +23,9 @@ public class AuthorsController {
     public String authors(Model model){
         model.addAttribute("authorsData", authorsService.getAuthorsData());
         model.addAttribute("searchPlaceholder", "new search placeholder");
+        model.addAttribute("serverTime", new Date());
+        model.addAttribute("placeholderTextPart2", "server");
+        model.addAttribute("messageTemplate", "searchbar.placeholder2");
         return "authors/index";
     }
 
