@@ -4,10 +4,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
-public class GenresController {
+public class RecentController {
 
-    @GetMapping("/genres")
-    public String genresBooksPage(){
-        return "genres/index";
+    @GetMapping("/books/recent")
+    public String recentBooksPage(){
+        return "books/recent";
     }
 }

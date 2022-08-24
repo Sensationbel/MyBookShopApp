@@ -9,6 +9,8 @@ import org.springframework.stereotype.Service;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -16,7 +18,12 @@ public class AuthorsService {
 
     private final AuthorsInterfaces ai;
 
-    public List<AuthorsDto> getAuthorsData(){
+//    public List<AuthorsDto> getAuthorsData(){
+//
+//        return authors ;
+//    }
+
+    public Map<String, List<AuthorsDto>> getAuthorsMap() {
         List<AuthorsDto> authors = new ArrayList<>();
         ai.findALL().forEach(author ->{
             AuthorsDto authorsDto = new AuthorsDto();
@@ -25,6 +32,9 @@ public class AuthorsService {
 
             authors.add(authorsDto);
         });
-        return authors;
+        return authors
+                .stream()
+                .collect(Collectors
+                        .groupingBy((AuthorsDto a) -> {return a.getLastName().substring(0, 1);}));
     }
 }

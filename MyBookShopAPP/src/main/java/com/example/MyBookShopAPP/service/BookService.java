@@ -20,7 +20,8 @@ public class BookService {
         List<BooksDto> books = new ArrayList<>();
             bi.findALL().forEach(book ->{
             BooksDto booksDto = new BooksDto();
-            booksDto.setAuthor(book.getAuthor().getLast_name());
+            booksDto.setId(book.getId());
+            booksDto.setAuthor(book.getAuthor().getLast_name() + " " + book.getAuthor().getFirst_name());
             booksDto.setTitle(book.getTitle());
             booksDto.setPriceOld(book.getPrice_Old());
             booksDto.setPrice(book.getPrice());
