@@ -1,10 +1,10 @@
 package com.example.MyBookShopAPP.repositories.jpa_interfaces;
 
-import com.example.MyBookShopAPP.data.Book;
+import com.example.MyBookShopAPP.model.BooksEntity;
 
 import java.util.List;
 
 public interface BooksInterfaces {
 
-    List<Book> findALL();
+    List<BooksEntity> findALL();
 }

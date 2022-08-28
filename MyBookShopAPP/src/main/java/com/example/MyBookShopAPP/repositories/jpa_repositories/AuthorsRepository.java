@@ -1,7 +1,7 @@
 package com.example.MyBookShopAPP.repositories.jpa_repositories;
 
-import com.example.MyBookShopAPP.data.Authors;
+import com.example.MyBookShopAPP.model.AuthorsEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface AuthorsRepository extends JpaRepository<Authors, Integer> {
+public interface AuthorsRepository extends JpaRepository<AuthorsEntity, Integer> {
 }

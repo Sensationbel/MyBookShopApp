@@ -1,0 +1,7 @@
+databaseChangeLog:
+#  - include:
+#      file: liquibase-outputChangeLog_init.yaml
+#      relativeToChangelogFile: true
+#  - include:
+#      file: changeset/create-ex-table.yaml
+#      relativeToChangelogFile: true

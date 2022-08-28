@@ -15,10 +15,10 @@ public class PopularsController {
 
     private final BookService bookService;
 
-    @ModelAttribute("booksList")
-    public List<BooksDto> getBooksData(){
-        return bookService.getBooksData().stream().limit(20).toList();
-    }
+//    @ModelAttribute("booksList")
+//    public List<BooksDto> getBooksData(){
+//        return bookService.getBooksData().stream().limit(20).toList();
+//    }
 
     @GetMapping("/books/popular")
     public String popularBooksPage(){

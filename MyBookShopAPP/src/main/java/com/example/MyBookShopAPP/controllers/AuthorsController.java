@@ -18,10 +18,10 @@ public class AuthorsController {
 
     private final AuthorsService authorsService;
 
-    @ModelAttribute("authorsMap")
-    public Map<String, List<AuthorsDto>> authorsMap(){
-        return authorsService.getAuthorsMap();
-    }
+//    @ModelAttribute("authorsMap")
+//    public Map<String, List<AuthorsDto>> authorsMap(){
+//        return authorsService.getAuthorsMap();
+//    }
 
     @GetMapping("/authors")
     public String getAuthorsPage(){
