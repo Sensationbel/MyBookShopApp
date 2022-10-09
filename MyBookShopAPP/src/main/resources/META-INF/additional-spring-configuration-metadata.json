@@ -1,0 +1,13 @@
+{
+  "properties": [
+    {
+      "name": "spring.jpa.sql.init.data-locations",
+      "type": "java.lang.String",
+      "description": "Description for spring.jpa.sql.init.data-locations."
+    },
+    {
+      "name": "spring.jpa.sql.init.mode",
+      "type": "java.lang.String",
+      "description": "Description for spring.jpa.sql.init.mode."
+    }
+  ] }

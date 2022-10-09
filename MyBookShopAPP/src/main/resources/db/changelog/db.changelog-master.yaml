@@ -1,0 +1,7 @@
+databaseChangeLog:
+  - include:
+      file: changeset/liquibase-outputChangeLog.yaml
+      relativeToChangelogFile: true
+  - include:
+      file: changeset/add-fields-booksTable.yaml
+      relativeToChangelogFile: true

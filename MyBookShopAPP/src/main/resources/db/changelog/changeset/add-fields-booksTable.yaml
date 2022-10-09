@@ -1,0 +1,18 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1-1
+      author: Sensationbel
+      comment: add fields count_bought, count_put_basket, count_postponed
+      changes:
+        - addColumn:
+            tableName: books
+            columns:
+              - column:
+                  name: count_bought
+                  type: INT
+              - column:
+                  name: count_put_basket
+                  type: INT
+              - column:
+                  name: count_postponed
+                  type: INT
