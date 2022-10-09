@@ -2,6 +2,7 @@ package com.example.MyBookShopAPP.repositories.jpa_services;
 
 import com.example.MyBookShopAPP.model.AuthorsEntity;
 import com.example.MyBookShopAPP.repositories.jpa_interfaces.AuthorsInterfaces;
+import com.example.MyBookShopAPP.repositories.jpa_interfaces.BooksInterfaces;
 import com.example.MyBookShopAPP.repositories.jpa_repositories.AuthorsRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -16,5 +17,10 @@ public class AuthorsJpaServices implements AuthorsInterfaces {
     @Override
     public List<AuthorsEntity> findALL() {
         return ar.findAll();
+    }
+
+    @Override
+    public AuthorsEntity findById(int id) {
+        return ar.findById(id);
     }
 }

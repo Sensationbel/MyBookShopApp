@@ -21,18 +21,19 @@ public class AuthorsService {
 //        return authors ;
 //    }
 
-//    public Map<String, List<AuthorsDto>> getAuthorsMap() {
-//        List<AuthorsDto> authors = new ArrayList<>();
-//        ai.findALL().forEach(author ->{
-//            AuthorsDto authorsDto = new AuthorsDto();
-//            authorsDto.setFirstName(author.getFirstName());
-//            authorsDto.setLastName(author.getLastName());
-//
-//            authors.add(authorsDto);
-//        });
-//        return authors
-//                .stream()
-//                .collect(Collectors
-//                        .groupingBy((AuthorsDto a) -> {return a.getLastName().substring(0, 1);}));
-//    }
+    public Map<String, List<AuthorsDto>> getAuthorsMap() {
+        List<AuthorsDto> authors = new ArrayList<>();
+        ai.findALL().forEach(author ->{
+            AuthorsDto authorsDto = new AuthorsDto();
+            String[] name = author.getName().split(" ");
+            authorsDto.setFirstName(name[0]);
+            authorsDto.setLastName(name[1]);
+
+            authors.add(authorsDto);
+        });
+        return authors
+                .stream()
+                .collect(Collectors
+                        .groupingBy((AuthorsDto a) -> {return a.getLastName().substring(0, 1);}));
+    }
 }

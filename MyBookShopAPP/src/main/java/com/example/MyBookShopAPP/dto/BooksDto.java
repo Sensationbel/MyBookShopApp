@@ -3,13 +3,19 @@ package com.example.MyBookShopAPP.dto;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.time.LocalDateTime;
+
 @Getter
 @Setter
 public class BooksDto {
 
-    private Integer id;
+    private int id;
     private String title;
-    private String priceOld;
-    private String price;
-    private String author;
+    private String image;
+    private int price;
+    private int discountPrice;
+    private String authors;
+    private short isBestseller;
+    private float discount;
+    private LocalDateTime pubDate;
 }

@@ -7,4 +7,5 @@ import java.util.List;
 public interface AuthorsInterfaces {
 
     List<AuthorsEntity> findALL();
+    AuthorsEntity findById(int id);
 }

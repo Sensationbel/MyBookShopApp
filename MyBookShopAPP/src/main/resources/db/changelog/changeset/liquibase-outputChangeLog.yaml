@@ -1,6 +1,37 @@
 databaseChangeLog:
 - changeSet:
-    id: 1661701488388-1
+    id: 1663603372276-1
+    author: Sensationbel (generated)
+    changes:
+    - createTable:
+        columns:
+        - column:
+            autoIncrement: true
+            constraints:
+              nullable: false
+              primaryKey: true
+              primaryKeyName: authors_pkey
+            name: id
+            type: INTEGER
+        - column:
+            name: description
+            type: TEXT
+        - column:
+            constraints:
+              nullable: false
+            name: name
+            type: VARCHAR(255)
+        - column:
+            name: photo
+            type: VARCHAR(255)
+        - column:
+            constraints:
+              nullable: false
+            name: slug
+            type: VARCHAR(255)
+        tableName: authors
+- changeSet:
+    id: 1663603372276-2
     author: Sensationbel (generated)
     changes:
     - createTable:
@@ -43,59 +74,7 @@ databaseChangeLog:
             type: INTEGER
         tableName: balance_transaction
 - changeSet:
-    id: 1661701488388-2
-    author: Sensationbel (generated)
-    changes:
-    - createTable:
-        columns:
-        - column:
-            autoIncrement: true
-            constraints:
-              nullable: false
-              primaryKey: true
-              primaryKeyName: book_pkey
-            name: id
-            type: INTEGER
-        - column:
-            name: description
-            type: TEXT
-        - column:
-            constraints:
-              nullable: false
-            defaultValueNumeric: 0
-            name: discount
-            type: SMALLINT
-        - column:
-            name: image
-            type: VARCHAR(255)
-        - column:
-            constraints:
-              nullable: false
-            name: is_bestseller
-            type: SMALLINT
-        - column:
-            constraints:
-              nullable: false
-            name: price
-            type: INTEGER
-        - column:
-            constraints:
-              nullable: false
-            name: pub_date
-            type: TIMESTAMP WITHOUT TIME ZONE
-        - column:
-            constraints:
-              nullable: false
-            name: slug
-            type: VARCHAR(255)
-        - column:
-            constraints:
-              nullable: false
-            name: title
-            type: VARCHAR(255)
-        tableName: book
-- changeSet:
-    id: 1661701488388-3
+    id: 1663603372276-3
     author: Sensationbel (generated)
     changes:
     - createTable:
@@ -108,158 +87,23 @@ databaseChangeLog:
         - column:
             constraints:
               nullable: false
-            defaultValueNumeric: 0
-            name: sort_index
-            type: INTEGER
-        - column:
-            autoIncrement: true
-            constraints:
-              nullable: false
-              primaryKey: true
-              primaryKeyName: book2author_pkey
             name: author_id
             type: INTEGER
         - column:
+            autoIncrement: true
             constraints:
               nullable: false
-              primaryKey: true
-              primaryKeyName: book2author_pkey
             name: book_id
+            type: INTEGER
+        - column:
+            constraints:
+              nullable: false
+            defaultValueNumeric: 0
+            name: sort_index
             type: INTEGER
         tableName: book2author
 - changeSet:
-    id: 1661701488388-4
-    author: Sensationbel (generated)
-    changes:
-    - createTable:
-        columns:
-        - column:
-            autoIncrement: true
-            constraints:
-              nullable: false
-              primaryKey: true
-              primaryKeyName: document_pkey
-            name: id
-            type: INTEGER
-        - column:
-            constraints:
-              nullable: false
-            name: slug
-            type: VARCHAR(255)
-        - column:
-            constraints:
-              nullable: false
-            defaultValueNumeric: 0
-            name: sort_index
-            type: INTEGER
-        - column:
-            constraints:
-              nullable: false
-            name: text
-            type: TEXT
-        - column:
-            constraints:
-              nullable: false
-            name: title
-            type: VARCHAR(255)
-        tableName: document
-- changeSet:
-    id: 1661701488388-5
-    author: Sensationbel (generated)
-    changes:
-    - createTable:
-        columns:
-        - column:
-            autoIncrement: true
-            constraints:
-              nullable: false
-              primaryKey: true
-              primaryKeyName: faq_pkey
-            name: id
-            type: INTEGER
-        - column:
-            constraints:
-              nullable: false
-            name: answer
-            type: TEXT
-        - column:
-            constraints:
-              nullable: false
-            name: question
-            type: VARCHAR(255)
-        - column:
-            constraints:
-              nullable: false
-            defaultValueNumeric: 0
-            name: sort_index
-            type: INTEGER
-        tableName: faq
-- changeSet:
-    id: 1661701488388-6
-    author: Sensationbel (generated)
-    changes:
-    - createTable:
-        columns:
-        - column:
-            constraints:
-              nullable: false
-            name: id
-            type: INTEGER
-        - column:
-            constraints:
-              nullable: false
-            defaultValueNumeric: 1
-            name: count
-            type: INTEGER
-        - column:
-            autoIncrement: true
-            constraints:
-              nullable: false
-              primaryKey: true
-              primaryKeyName: file_download_pkey
-            name: user_id
-            type: INTEGER
-        - column:
-            constraints:
-              nullable: false
-              primaryKey: true
-              primaryKeyName: file_download_pkey
-            name: book_id
-            type: INTEGER
-        tableName: file_download
-- changeSet:
-    id: 1661701488388-7
-    author: Sensationbel (generated)
-    changes:
-    - createTable:
-        columns:
-        - column:
-            autoIncrement: true
-            constraints:
-              nullable: false
-              primaryKey: true
-              primaryKeyName: author_pkey
-            name: id
-            type: INTEGER
-        - column:
-            name: description
-            type: TEXT
-        - column:
-            constraints:
-              nullable: false
-            name: name
-            type: VARCHAR(255)
-        - column:
-            name: photo
-            type: VARCHAR(255)
-        - column:
-            constraints:
-              nullable: false
-            name: slug
-            type: VARCHAR(255)
-        tableName: author
-- changeSet:
-    id: 1661701488388-8
+    id: 1663603372276-4
     author: Sensationbel (generated)
     changes:
     - createTable:
@@ -286,7 +130,7 @@ databaseChangeLog:
             type: INTEGER
         tableName: book2genre
 - changeSet:
-    id: 1661701488388-9
+    id: 1663603372276-5
     author: Sensationbel (generated)
     changes:
     - createTable:
@@ -323,7 +167,7 @@ databaseChangeLog:
             type: INTEGER
         tableName: book2user
 - changeSet:
-    id: 1661701488388-10
+    id: 1663603372276-6
     author: Sensationbel (generated)
     changes:
     - createTable:
@@ -348,7 +192,7 @@ databaseChangeLog:
             type: VARCHAR(255)
         tableName: book2user_type
 - changeSet:
-    id: 1661701488388-11
+    id: 1663603372276-7
     author: Sensationbel (generated)
     changes:
     - createTable:
@@ -378,7 +222,7 @@ databaseChangeLog:
             type: INTEGER
         tableName: book_file
 - changeSet:
-    id: 1661701488388-12
+    id: 1663603372276-8
     author: Sensationbel (generated)
     changes:
     - createTable:
@@ -401,7 +245,7 @@ databaseChangeLog:
             type: VARCHAR(255)
         tableName: book_file_type
 - changeSet:
-    id: 1661701488388-13
+    id: 1663603372276-9
     author: Sensationbel (generated)
     changes:
     - createTable:
@@ -438,7 +282,7 @@ databaseChangeLog:
             type: INTEGER
         tableName: book_review
 - changeSet:
-    id: 1661701488388-14
+    id: 1663603372276-10
     author: Sensationbel (generated)
     changes:
     - createTable:
@@ -473,7 +317,159 @@ databaseChangeLog:
             type: SMALLINT
         tableName: book_review_like
 - changeSet:
-    id: 1661701488388-15
+    id: 1663603372276-11
+    author: Sensationbel (generated)
+    changes:
+    - createTable:
+        columns:
+        - column:
+            autoIncrement: true
+            constraints:
+              nullable: false
+              primaryKey: true
+              primaryKeyName: books_pkey
+            name: id
+            type: INTEGER
+        - column:
+            name: description
+            type: TEXT
+        - column:
+            constraints:
+              nullable: false
+            defaultValueNumeric: 0.0
+            name: discount
+            type: FLOAT8
+        - column:
+            name: image
+            type: VARCHAR(255)
+        - column:
+            constraints:
+              nullable: false
+            name: is_bestseller
+            type: SMALLINT
+        - column:
+            constraints:
+              nullable: false
+            name: price
+            type: INTEGER
+        - column:
+            constraints:
+              nullable: false
+            name: pub_date
+            type: TIMESTAMP WITHOUT TIME ZONE
+        - column:
+            constraints:
+              nullable: false
+            name: slug
+            type: VARCHAR(255)
+        - column:
+            constraints:
+              nullable: false
+            name: title
+            type: VARCHAR(255)
+        tableName: books
+- changeSet:
+    id: 1663603372276-12
+    author: Sensationbel (generated)
+    changes:
+    - createTable:
+        columns:
+        - column:
+            autoIncrement: true
+            constraints:
+              nullable: false
+              primaryKey: true
+              primaryKeyName: document_pkey
+            name: id
+            type: INTEGER
+        - column:
+            constraints:
+              nullable: false
+            name: slug
+            type: VARCHAR(255)
+        - column:
+            constraints:
+              nullable: false
+            defaultValueNumeric: 0
+            name: sort_index
+            type: INTEGER
+        - column:
+            constraints:
+              nullable: false
+            name: text
+            type: TEXT
+        - column:
+            constraints:
+              nullable: false
+            name: title
+            type: VARCHAR(255)
+        tableName: document
+- changeSet:
+    id: 1663603372276-13
+    author: Sensationbel (generated)
+    changes:
+    - createTable:
+        columns:
+        - column:
+            autoIncrement: true
+            constraints:
+              nullable: false
+              primaryKey: true
+              primaryKeyName: faq_pkey
+            name: id
+            type: INTEGER
+        - column:
+            constraints:
+              nullable: false
+            name: answer
+            type: TEXT
+        - column:
+            constraints:
+              nullable: false
+            name: question
+            type: VARCHAR(255)
+        - column:
+            constraints:
+              nullable: false
+            defaultValueNumeric: 0
+            name: sort_index
+            type: INTEGER
+        tableName: faq
+- changeSet:
+    id: 1663603372276-14
+    author: Sensationbel (generated)
+    changes:
+    - createTable:
+        columns:
+        - column:
+            constraints:
+              nullable: false
+            name: id
+            type: INTEGER
+        - column:
+            constraints:
+              nullable: false
+            defaultValueNumeric: 1
+            name: count
+            type: INTEGER
+        - column:
+            autoIncrement: true
+            constraints:
+              nullable: false
+              primaryKey: true
+              primaryKeyName: file_download_pkey
+            name: user_id
+            type: INTEGER
+        - column:
+            constraints:
+              nullable: false
+              primaryKey: true
+              primaryKeyName: file_download_pkey
+            name: book_id
+            type: INTEGER
+        tableName: file_download
+- changeSet:
+    id: 1663603372276-15
     author: Sensationbel (generated)
     changes:
     - createTable:
@@ -501,7 +497,7 @@ databaseChangeLog:
             type: VARCHAR(255)
         tableName: genre
 - changeSet:
-    id: 1661701488388-16
+    id: 1663603372276-16
     author: Sensationbel (generated)
     changes:
     - createTable:
@@ -540,7 +536,7 @@ databaseChangeLog:
             type: INTEGER
         tableName: message
 - changeSet:
-    id: 1661701488388-17
+    id: 1663603372276-17
     author: Sensationbel (generated)
     changes:
     - createTable:
@@ -584,7 +580,7 @@ databaseChangeLog:
             type: INTEGER
         tableName: user_contact
 - changeSet:
-    id: 1661701488388-18
+    id: 1663603372276-18
     author: Sensationbel (generated)
     changes:
     - createTable:
@@ -619,7 +615,15 @@ databaseChangeLog:
             type: TIMESTAMP WITHOUT TIME ZONE
         tableName: users
 - changeSet:
-    id: 1661701488388-19
+    id: 1663603372276-19
+    author: Sensationbel (generated)
+    changes:
+    - addPrimaryKey:
+        columnNames: book_id, author_id
+        constraintName: book2author_pkey
+        tableName: book2author
+- changeSet:
+    id: 1663603372276-20
     author: Sensationbel (generated)
     changes:
     - addForeignKeyConstraint:
@@ -634,97 +638,82 @@ databaseChangeLog:
         referencedTableName: users
         validate: true
 - changeSet:
-    id: 1661701488388-20
-    author: Sensationbel (generated)
-    changes:
-    - addForeignKeyConstraint:
-        baseColumnNames: book_id
-        baseTableName: book_review
-        constraintName: fk29oatdl4f30mtg65oxo1nkmjg
-        deferrable: false
-        initiallyDeferred: false
-        onDelete: NO ACTION
-        onUpdate: NO ACTION
-        referencedColumnNames: id
-        referencedTableName: book
-        validate: true
-- changeSet:
-    id: 1661701488388-21
-    author: Sensationbel (generated)
-    changes:
-    - addForeignKeyConstraint:
-        baseColumnNames: book_id
-        baseTableName: book2user
-        constraintName: fk7cv34daf9pi5ie147slv010b3
-        deferrable: false
-        initiallyDeferred: false
-        onDelete: NO ACTION
-        onUpdate: NO ACTION
-        referencedColumnNames: id
-        referencedTableName: book
-        validate: true
-- changeSet:
-    id: 1661701488388-22
-    author: Sensationbel (generated)
-    changes:
-    - addForeignKeyConstraint:
-        baseColumnNames: book_id
-        baseTableName: book2author
-        constraintName: fkafij5snytuqywyya5gj5r30l3
-        deferrable: false
-        initiallyDeferred: false
-        onDelete: NO ACTION
-        onUpdate: NO ACTION
-        referencedColumnNames: id
-        referencedTableName: book
-        validate: true
-- changeSet:
-    id: 1661701488388-23
+    id: 1663603372276-21
     author: Sensationbel (generated)
     changes:
     - addForeignKeyConstraint:
         baseColumnNames: author_id
         baseTableName: book2author
-        constraintName: fkcdamvjmc66dxs94gpco2g5yyb
+        constraintName: fk3hyom3yo5q6nfo9ytqofqil37
         deferrable: false
         initiallyDeferred: false
         onDelete: NO ACTION
         onUpdate: NO ACTION
         referencedColumnNames: id
-        referencedTableName: author
+        referencedTableName: authors
         validate: true
 - changeSet:
-    id: 1661701488388-24
+    id: 1663603372276-22
     author: Sensationbel (generated)
     changes:
     - addForeignKeyConstraint:
         baseColumnNames: book_id
-        baseTableName: file_download
-        constraintName: fkckyk51qg1y0buyh6pe7uwcw8w
+        baseTableName: book2author
+        constraintName: fk8joa8tens71ol1st4fd9hssph
         deferrable: false
         initiallyDeferred: false
         onDelete: NO ACTION
         onUpdate: NO ACTION
         referencedColumnNames: id
-        referencedTableName: book
+        referencedTableName: books
         validate: true
 - changeSet:
-    id: 1661701488388-25
+    id: 1663603372276-23
     author: Sensationbel (generated)
     changes:
     - addForeignKeyConstraint:
         baseColumnNames: book_id
         baseTableName: book2genre
-        constraintName: fkdyiaf682r8d022a3gi1q16ypw
+        constraintName: fkceqa97sssb6d5xg7n8jtt5gqb
         deferrable: false
         initiallyDeferred: false
         onDelete: NO ACTION
         onUpdate: NO ACTION
         referencedColumnNames: id
-        referencedTableName: book
+        referencedTableName: books
         validate: true
 - changeSet:
-    id: 1661701488388-26
+    id: 1663603372276-24
+    author: Sensationbel (generated)
+    changes:
+    - addForeignKeyConstraint:
+        baseColumnNames: book_id
+        baseTableName: book2user
+        constraintName: fkd80i5quc7o0xb1d1k8ppqmtsu
+        deferrable: false
+        initiallyDeferred: false
+        onDelete: NO ACTION
+        onUpdate: NO ACTION
+        referencedColumnNames: id
+        referencedTableName: books
+        validate: true
+- changeSet:
+    id: 1663603372276-25
+    author: Sensationbel (generated)
+    changes:
+    - addForeignKeyConstraint:
+        baseColumnNames: book_id
+        baseTableName: balance_transaction
+        constraintName: fke2aw1i7lhjey4rskq9qhed9qs
+        deferrable: false
+        initiallyDeferred: false
+        onDelete: NO ACTION
+        onUpdate: NO ACTION
+        referencedColumnNames: id
+        referencedTableName: books
+        validate: true
+- changeSet:
+    id: 1663603372276-26
     author: Sensationbel (generated)
     changes:
     - addForeignKeyConstraint:
@@ -739,22 +728,22 @@ databaseChangeLog:
         referencedTableName: users
         validate: true
 - changeSet:
-    id: 1661701488388-27
+    id: 1663603372276-27
     author: Sensationbel (generated)
     changes:
     - addForeignKeyConstraint:
         baseColumnNames: book_id
-        baseTableName: balance_transaction
-        constraintName: fkfmqooydnad6dlf5jjhx1mmqft
+        baseTableName: book_review
+        constraintName: fkgme5o68sylsmw5hw0ys2x8iw8
         deferrable: false
         initiallyDeferred: false
         onDelete: NO ACTION
         onUpdate: NO ACTION
         referencedColumnNames: id
-        referencedTableName: book
+        referencedTableName: books
         validate: true
 - changeSet:
-    id: 1661701488388-28
+    id: 1663603372276-28
     author: Sensationbel (generated)
     changes:
     - addForeignKeyConstraint:
@@ -769,7 +758,7 @@ databaseChangeLog:
         referencedTableName: genre
         validate: true
 - changeSet:
-    id: 1661701488388-29
+    id: 1663603372276-29
     author: Sensationbel (generated)
     changes:
     - addForeignKeyConstraint:
@@ -784,7 +773,7 @@ databaseChangeLog:
         referencedTableName: users
         validate: true
 - changeSet:
-    id: 1661701488388-30
+    id: 1663603372276-30
     author: Sensationbel (generated)
     changes:
     - addForeignKeyConstraint:
@@ -799,7 +788,7 @@ databaseChangeLog:
         referencedTableName: users
         validate: true
 - changeSet:
-    id: 1661701488388-31
+    id: 1663603372276-31
     author: Sensationbel (generated)
     changes:
     - addForeignKeyConstraint:
@@ -812,5 +801,20 @@ databaseChangeLog:
         onUpdate: NO ACTION
         referencedColumnNames: id
         referencedTableName: users
+        validate: true
+- changeSet:
+    id: 1663603372276-32
+    author: Sensationbel (generated)
+    changes:
+    - addForeignKeyConstraint:
+        baseColumnNames: book_id
+        baseTableName: file_download
+        constraintName: fkswtliibr0mrua60wbmecwlfyo
+        deferrable: false
+        initiallyDeferred: false
+        onDelete: NO ACTION
+        onUpdate: NO ACTION
+        referencedColumnNames: id
+        referencedTableName: books
         validate: true
 

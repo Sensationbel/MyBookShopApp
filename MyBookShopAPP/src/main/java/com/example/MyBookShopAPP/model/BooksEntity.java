@@ -7,22 +7,24 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.Set;
 
 @Getter
 @Setter
 @Entity
-@Table(name = "book")
+@Table(name = "books")
 public class BooksEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @Column(columnDefinition = "TIMESTAMP", nullable = false)
-    private LocalDateTime pubDate;
+    @Column(name = "pub_date",columnDefinition = "TIMESTAMP", nullable = false)
+    @Temporal(TemporalType.DATE)
+    private Date pubDate;
 
-    @Column(columnDefinition = "SMALLINT", nullable = false)
+    @Column(name = "is_bestseller", columnDefinition = "SMALLINT", nullable = false)
     private short isBestseller;
 
     @Column(columnDefinition = "VARCHAR(255)", nullable = false)
@@ -37,13 +39,24 @@ public class BooksEntity {
     @Column(columnDefinition = "TEXT")
     private String description;
 
-    @Column(columnDefinition = "INT", nullable = false)
+    @Column( columnDefinition = "INT", nullable = false)
     private int price;
 
-    @Column(columnDefinition = "SMALLINT DEFAULT 0", nullable = false)
-    private short discount;
+    @Column(columnDefinition = "FLOAT DEFAULT 0", nullable = false)
+    private float discount;
+    @Column(name = "count_bought")
+    private int countBought;
 
-    @ManyToMany(cascade = CascadeType.ALL, mappedBy = "books")
+    @Column(name = "count_put_basket")
+    private int countPutBasket;
+
+    @Column(name = "count_postponed")
+    private int countPostponed;
+
+    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinTable(name="book2author",
+            joinColumns = @JoinColumn(name = "book_id"),
+            inverseJoinColumns = @JoinColumn(name = "author_id"))
     private Set<AuthorsEntity> authors;
 
     @ManyToMany(mappedBy = "books")

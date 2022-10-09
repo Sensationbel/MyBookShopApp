@@ -3,6 +3,7 @@ package com.example.MyBookShopAPP.model.genre;
 import com.example.MyBookShopAPP.model.BooksEntity;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
 import javax.persistence.*;
 import java.util.Set;
@@ -11,14 +12,15 @@ import java.util.Set;
 @Table(name = "genre")
 @Getter
 @Setter
+@ToString
 public class GenreEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Integer id;
 
-    @Column(columnDefinition = "INT")
-    private int parentId;
+    @Column(name = "parent_id", columnDefinition = "INT", nullable = true)
+    private Integer parentId;
 
     @Column(columnDefinition = "VARCHAR(255) NOT NULL")
     private String slug;
