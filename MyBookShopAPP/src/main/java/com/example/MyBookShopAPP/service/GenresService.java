@@ -40,14 +40,14 @@ public class GenresService {
         });
     }
 
-    private GenresDto getGenresDto(GenreEntity g) {
-        List<GenreEntity> genreEntityChildList = new ArrayList<>(gi.findAllByParentId(g.getId()));
+    private GenresDto getGenresDto(GenreEntity genreEntity) {
+        List<GenreEntity> genreEntityChildList = new ArrayList<>(gi.findAllByParentId(genreEntity.getId()));
         GenresDto genresDto;
 
         if(genreEntityChildList.size() == 0){
-            genresDto = createGenresDto(g);
+            genresDto = createGenresDto(genreEntity);
         } else {
-            genresDto = createGenresDto(g);
+            genresDto = createGenresDto(genreEntity);
             List<GenresDto> list = genresDto.getChildList();
             genreEntityChildList.forEach(genres -> {
                 GenresDto genre = getGenresDto(genres);
@@ -58,14 +58,12 @@ public class GenresService {
         return genresDto;
     }
 
-    private GenresDto createGenresDto(GenreEntity g){
+    private GenresDto createGenresDto(GenreEntity genreEntity){
         GenresDto genresDto = new GenresDto();
-        genresDto.setId(g.getId());
-        genresDto.setParentId(g.getParentId());
-        genresDto.setGenresName(g.getName());
-        genresDto.setBooksCount(g.getBooks().size());
+        genresDto.setId(genreEntity.getId());
+        genresDto.setParentId(genreEntity.getParentId());
+        genresDto.setGenresName(genreEntity.getName());
+        genresDto.setBooksCount(genreEntity.getBooks().size());
         return genresDto;
     }
-
-
 }
