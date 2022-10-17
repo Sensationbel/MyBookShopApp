@@ -6,7 +6,6 @@ import com.example.MyBookShopAPP.model.book.links.Book2AuthorEntity;
 import com.example.MyBookShopAPP.repositories.jpa_interfaces.AuthorsInterfaces;
 import com.example.MyBookShopAPP.repositories.jpa_interfaces.Book2AuthorInterfaces;
 import com.example.MyBookShopAPP.repositories.jpa_interfaces.BooksInterfaces;
-import com.example.MyBookShopAPP.repositories.jpa_services.AuthorsJpaServices;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.PageRequest;
@@ -26,7 +25,7 @@ public class BookService {
     private final Book2AuthorInterfaces b2AuthInt;
     private final AuthorsInterfaces aServ;
 
-    public List<BooksDto> getBooksData(List<BooksEntity> list) {
+    public List<BooksDto> getBooksDtoList(List<BooksEntity> list) {
         List<BooksDto> books = new ArrayList<>();
         list.forEach(book -> {
             BooksDto booksDto = new BooksDto();
@@ -60,21 +59,21 @@ public class BookService {
 
     public List<BooksDto> getPageOfRecommendedBook(Integer offset, Integer limit) {
         Pageable nextPage = PageRequest.of(offset, limit);
-        return getBooksData(bi.findALL(nextPage).getContent());
+        return getBooksDtoList(bi.findALL(nextPage).getContent());
     }
 
     public List<BooksDto> getPageOfSearchResultBooks(String searchWord, int offset, int limit){
         Pageable nextPage =  PageRequest.of(offset, limit);
-        return getBooksData(bi.findBooksEntitiesByTitleContaining(searchWord, nextPage).getContent());
+        return getBooksDtoList(bi.findBooksEntitiesByTitleContaining(searchWord, nextPage).getContent());
     }
 
     public List<BooksDto> getPageOfPopularBook(Integer offset, Integer limit) {
         Pageable nextPage = PageRequest.of(offset, limit);
-        return getBooksData(bi.getAllByAvg(nextPage).getContent());
+        return getBooksDtoList(bi.getAllByAvg(nextPage).getContent());
     }
     public List<BooksDto> getPageOfRecentBook(Integer offset, Integer limit) {
         Pageable nextPage = PageRequest.of(offset, limit);
-        return getBooksData(bi.findAllByOrderByPubDate(nextPage).getContent());
+        return getBooksDtoList(bi.findAllByOrderByPubDate(nextPage).getContent());
     }
 
     public List<BooksDto> getPageOfRecentBooksBetween(Date pubDate,
@@ -82,6 +81,6 @@ public class BookService {
                                                       Integer offset,
                                                       Integer limit){
         Pageable nextPage = PageRequest.of(offset, limit);
-        return getBooksData(bi.findAllByPubDateBetweenOrderByPubDate(pubDate, pubDate2, nextPage).getContent());
+        return getBooksDtoList(bi.findAllByPubDateBetweenOrderByPubDate(pubDate, pubDate2, nextPage).getContent());
     }
 }

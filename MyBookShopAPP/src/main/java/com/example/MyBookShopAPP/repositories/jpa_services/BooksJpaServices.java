@@ -49,5 +49,7 @@ public class BooksJpaServices implements BooksInterfaces {
         return br.getAllByAvg(pageable);
     }
 
-
+    public List<BooksEntity> getBooksEntitiesByGenres(Pageable nextPage, String slug){
+        return br.getBooksEntitiesByGenres(nextPage, slug);
+    }
 }

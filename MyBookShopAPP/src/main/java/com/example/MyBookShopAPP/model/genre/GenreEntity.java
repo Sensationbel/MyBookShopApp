@@ -1,11 +1,13 @@
 package com.example.MyBookShopAPP.model.genre;
 
 import com.example.MyBookShopAPP.model.BooksEntity;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
 import javax.persistence.*;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -32,5 +34,6 @@ public class GenreEntity {
     @JoinTable(name = "book2genre",
     joinColumns = @JoinColumn(name = "genre_id"),
     inverseJoinColumns = @JoinColumn(name = "book_id"))
-    private Set<BooksEntity> books;
+    @JsonIgnore
+    private List<BooksEntity> books;
 }

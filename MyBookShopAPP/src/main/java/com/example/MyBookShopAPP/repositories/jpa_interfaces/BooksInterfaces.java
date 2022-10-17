@@ -20,4 +20,6 @@ public interface BooksInterfaces {
                                                             Pageable pageable);
 
     Page<BooksEntity> getAllByAvg(Pageable pageable);
+
+    List<BooksEntity> getBooksEntitiesByGenres(Pageable nextPage, String slug);
 }

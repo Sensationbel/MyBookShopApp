@@ -15,6 +15,7 @@ public class GenresDto {
     private int id;
     private Integer parentId;
     private String genresName;
+    private String slug;
     private int booksCount;
 
     private List<GenresDto> childList = new ArrayList<>();

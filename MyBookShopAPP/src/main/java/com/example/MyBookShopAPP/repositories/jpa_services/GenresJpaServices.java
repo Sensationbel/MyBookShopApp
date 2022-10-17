@@ -23,4 +23,19 @@ public class GenresJpaServices implements GenresInterfaces {
     public List<GenreEntity> findAllByParentId(int id) {
         return gr.findAllByParentId(id);
     }
+
+    @Override
+    public GenreEntity findBySlug(String slug) {
+        return gr.findBySlug(slug);
+    }
+
+    @Override
+    public GenreEntity findById(int id) {
+        return gr.findById(id);
+    }
+
+    @Override
+    public List<GenreEntity> getGenresBySlug(String slug) {
+        return gr.getGenresBySlug(slug);
+    }
 }

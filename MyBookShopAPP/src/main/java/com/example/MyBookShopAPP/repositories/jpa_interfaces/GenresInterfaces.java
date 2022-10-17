@@ -8,4 +8,7 @@ public interface GenresInterfaces {
 
     List<GenreEntity> findAllByParentIdIsNull();
     List<GenreEntity> findAllByParentId(int id);
+    GenreEntity findBySlug(String slug);
+    GenreEntity findById(int id);
+    List<GenreEntity> getGenresBySlug(String slug);
 }
