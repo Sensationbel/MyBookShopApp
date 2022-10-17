@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+</head>
+<body>
+<div class="Tags" th:class="${genres.id==1}?'Tags Tags_embed':'Tags'" th:fragment="tags">
+    <div class="Tags-title">
+        <div class="Tag" th:fragment="tag">
+            <a href="/genres/slug.html" th:href="@{/genres/{slug}(slug=${genres.slug})}" th:text="${genres.genresName + '(' + genres.booksCount + ')'}"
+            >Детективы<span class="undefined-amount">(10)</span></a>
+        </div>
+    </div >
+    <th:block th:each="genres:${genres.childList}"
+         th:with="size=${genres.childList.size()}">
+        <div th:replace="${size==0}?~{::tag}:~{::tags}"></div>
+    </th:block>
+</div>
+<li class="breadcrumbs-item breadcrumbs-item_current"
+    th:fragment="foot"
+    th:text="${genre.name}"><span>Детективы</span>
+</li>
+</body>
+</html>

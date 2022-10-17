@@ -6,9 +6,9 @@ spring:
     basename: lang.messages
   web:
     resources:
-      static-locations: classpath:/spring-frontend/
+      static-locations: classpath:/frontend/
   thymeleaf:
-    prefix: classpath:/spring-frontend/
+    prefix: classpath:/frontend/
 
   datasource:
     url: jdbc:postgresql://localhost:5432/postgres
