@@ -29,7 +29,11 @@ public class GenresService {
         List<GenreEntity> parentsList = gi.findAllByParentIdIsNull();
 
         parentsList.forEach(g -> genresDtoList.add(getGenresDto(g)));
-        return genresDtoList.stream().sorted(Comparator.comparingInt(GenresDto::getBooksCount).reversed()).toList();
+        return genresDtoList.
+                stream().
+                sorted(Comparator.comparingInt(GenresDto::getBooksCount).
+                        reversed()).
+                toList();
     }
 
     private GenresDto getGenresDto(GenreEntity genreEntity) {
