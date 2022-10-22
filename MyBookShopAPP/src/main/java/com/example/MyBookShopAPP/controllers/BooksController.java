@@ -1,9 +1,8 @@
 package com.example.MyBookShopAPP.controllers;
 
-import com.example.MyBookShopAPP.dto.BooksDto;
-import com.example.MyBookShopAPP.dto.BooksPageDto;
-import com.example.MyBookShopAPP.dto.SearchWordDto;
+import com.example.MyBookShopAPP.dto.*;
 import com.example.MyBookShopAPP.service.BookService;
+import com.example.MyBookShopAPP.service.TagsService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,6 +16,7 @@ import java.util.List;
 public class BooksController {
 
     private final BookService bookService;
+    private final TagsService tagsService;
 
     @ModelAttribute("recommendedBooks")
     public List<BooksDto> recommendedBooks(){
@@ -43,6 +43,10 @@ public class BooksController {
         return bookService.getPageOfRecentBook(0, 6);
     }
 
+    @ModelAttribute("tagsList")
+    public List<TagsDto> genresTagList(){
+        return tagsService.getPageOfTags();
+    }
 
     @GetMapping("/")
     public String mainPage(){

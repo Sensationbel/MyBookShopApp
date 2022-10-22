@@ -16,15 +16,11 @@ public class AuthorsService {
 
     private final AuthorsInterfaces ai;
 
-//    public List<AuthorsDto> getAuthorsData(){
-//
-//        return authors ;
-//    }
-
     public Map<String, List<AuthorsDto>> getAuthorsMap() {
         List<AuthorsDto> authors = new ArrayList<>();
         ai.findALL().forEach(author ->{
             AuthorsDto authorsDto = new AuthorsDto();
+            authorsDto.setAuthorId(author.getId());
             String[] name = author.getName().split(" ");
             authorsDto.setFirstName(name[0]);
             authorsDto.setLastName(name[1]);

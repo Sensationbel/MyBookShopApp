@@ -2,6 +2,7 @@ package com.example.MyBookShopAPP.service;
 
 import com.example.MyBookShopAPP.dto.BooksDto;
 import com.example.MyBookShopAPP.dto.GenresDto;
+import com.example.MyBookShopAPP.dto.TagsDto;
 import com.example.MyBookShopAPP.model.BooksEntity;
 import com.example.MyBookShopAPP.model.genre.GenreEntity;
 import com.example.MyBookShopAPP.repositories.jpa_interfaces.BooksInterfaces;

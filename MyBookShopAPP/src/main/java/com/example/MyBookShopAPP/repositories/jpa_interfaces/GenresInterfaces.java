@@ -11,4 +11,5 @@ public interface GenresInterfaces {
     GenreEntity findBySlug(String slug);
     GenreEntity findById(int id);
     List<GenreEntity> getGenresBySlug(String slug);
+    List<GenreEntity> findAll();
 }

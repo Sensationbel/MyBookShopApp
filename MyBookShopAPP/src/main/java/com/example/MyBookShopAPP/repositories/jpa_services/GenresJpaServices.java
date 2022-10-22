@@ -38,4 +38,9 @@ public class GenresJpaServices implements GenresInterfaces {
     public List<GenreEntity> getGenresBySlug(String slug) {
         return gr.getGenresBySlug(slug);
     }
+
+    @Override
+    public List<GenreEntity> findAll() {
+        return gr.findAll();
+    }
 }
