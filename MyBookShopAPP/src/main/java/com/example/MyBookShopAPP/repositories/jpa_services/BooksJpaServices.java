@@ -52,4 +52,10 @@ public class BooksJpaServices implements BooksInterfaces {
     public List<BooksEntity> getBooksEntitiesByGenres(Pageable nextPage, String slug){
         return br.getBooksEntitiesByGenres(nextPage, slug);
     }
+
+    @Override
+    public List<BooksEntity> findAllByAuthors(int id, Pageable pageable) {
+        return br.findAllByAuthors(pageable, id);
+    }
+
 }

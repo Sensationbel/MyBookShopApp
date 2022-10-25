@@ -1,5 +1,6 @@
 package com.example.MyBookShopAPP.repositories.jpa_repositories;
 
+import com.example.MyBookShopAPP.model.AuthorsEntity;
 import com.example.MyBookShopAPP.model.BooksEntity;
 import com.example.MyBookShopAPP.model.genre.GenreEntity;
 import org.hibernate.annotations.SQLInsert;
@@ -39,4 +40,10 @@ public interface BooksRepository extends JpaRepository<BooksEntity, Integer> {
             "INNER JOIN generation g ON g.id = gr.id " +
             "LEFT JOIN Genre parent ON parent.id=g.parent_id) AS BooksSort ORDER BY BooksSort.title", nativeQuery = true)
     List<BooksEntity> getBooksEntitiesByGenres(Pageable pageable, String slug);
+
+    @Query(value = "SELECT * FROM Books b " +
+            "JOIN Book2author ba ON ba.book_id = b.id " +
+            "JOIN Authors a ON a.id = ba.author_id " +
+            "WHERE a.id=?1", nativeQuery = true)
+    List<BooksEntity> findAllByAuthors(Pageable pageable, int id);
 }

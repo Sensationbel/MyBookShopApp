@@ -1,15 +1,13 @@
 package com.example.MyBookShopAPP.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
-import java.util.Collection;
-import java.util.Set;
+import java.util.List;
 
 @Getter
 @Setter
@@ -34,6 +32,6 @@ public class AuthorsEntity {
 
     @ManyToMany(mappedBy = "authors")
     @JsonIgnore
-    private Set<BooksEntity> books;
+    private List<BooksEntity> books;
 
 }

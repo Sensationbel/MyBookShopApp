@@ -22,4 +22,5 @@ public interface BooksInterfaces {
     Page<BooksEntity> getAllByAvg(Pageable pageable);
 
     List<BooksEntity> getBooksEntitiesByGenres(Pageable nextPage, String slug);
+    List<BooksEntity> findAllByAuthors(int id, Pageable pageable);
 }
