@@ -10,12 +10,12 @@ import java.time.LocalDateTime;
 public class BooksDto {
 
     private int id;
+    private String slug;
     private String title;
     private String image;
     private int price;
     private int discountPrice;
     private String authors;
     private short isBestseller;
-    private float discount;
-    private LocalDateTime pubDate;
+    private short discount;
 }

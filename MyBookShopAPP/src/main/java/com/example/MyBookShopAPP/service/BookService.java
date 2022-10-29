@@ -28,22 +28,32 @@ public class BookService {
     public List<BooksDto> getBooksDtoList(List<BooksEntity> list) {
         List<BooksDto> books = new ArrayList<>();
         list.forEach(book -> {
-            BooksDto booksDto = new BooksDto();
-            booksDto.setId(book.getId());
-            booksDto.setImage(book.getImage());
-            booksDto.setAuthors(getAuthors(book));
-            booksDto.setTitle(book.getTitle());
-            booksDto.setPrice(book.getPrice());
-            booksDto.setDiscountPrice((int) getPriceOld(book));
-            booksDto.setDiscount(book.getDiscount());
-            booksDto.setIsBestseller(book.getIsBestseller());
+            BooksDto booksDto = createBooksDto(book);
             books.add(booksDto);
         });
         return books;
     }
 
+    public BooksDto getBooksDtoBySlug(String slug) {
+        return createBooksDto(bi.findBySlug(slug));
+    }
+
+    private BooksDto createBooksDto(BooksEntity book) {
+        BooksDto booksDto = new BooksDto();
+        booksDto.setId(book.getId());
+        booksDto.setSlug(book.getSlug());
+        booksDto.setImage(book.getImage());
+        booksDto.setAuthors(getAuthors(book));
+        booksDto.setTitle(book.getTitle());
+        booksDto.setPrice(book.getPrice());
+        booksDto.setDiscountPrice((int) getPriceOld(book));
+        booksDto.setDiscount((short) (book.getDiscount()*100));
+        booksDto.setIsBestseller(book.getIsBestseller());
+        return booksDto;
+    }
+
     private double getPriceOld(BooksEntity book) {
-        return book.getDiscount() > 0.0 ? book.getPrice() * book.getDiscount() : 0.0;
+        return book.getDiscount() > 0.0 ? (book.getPrice() - (book.getPrice() * book.getDiscount())) : 0.0;
     }
 
     private String getAuthors(BooksEntity book) {
@@ -82,5 +92,11 @@ public class BookService {
                                                       Integer limit){
         Pageable nextPage = PageRequest.of(offset, limit);
         return getBooksDtoList(bi.findAllByPubDateBetweenOrderByPubDate(pubDate, pubDate2, nextPage).getContent());
+    }
+
+    public void exchangeImage(String savePath, String slug) {
+        BooksEntity book = bi.findBySlug(slug);
+        book.setImage(savePath);
+        bi.save(book);
     }
 }

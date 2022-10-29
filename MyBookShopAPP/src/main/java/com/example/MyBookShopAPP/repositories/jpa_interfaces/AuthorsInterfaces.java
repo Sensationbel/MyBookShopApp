@@ -8,4 +8,6 @@ public interface AuthorsInterfaces {
 
     List<AuthorsEntity> findALL();
     AuthorsEntity findById(int id);
+    AuthorsEntity findBySlug(String slug);
+    AuthorsEntity save(AuthorsEntity author);
 }

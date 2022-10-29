@@ -42,6 +42,7 @@ public class AuthorsService {
         String[] name = author.getName().split(" ");
         authorsDto.setFirstName(name[0]);
         authorsDto.setLastName(name[1]);
+        authorsDto.setSlug(author.getSlug());
         return authorsDto;
     }
 
@@ -49,10 +50,11 @@ public class AuthorsService {
         return createAuthorsDto(ai.findById(authorId));
     }
 
-    public AuthorSlugDto getAuthorsSlugDtoById(int id) {
-        AuthorsEntity authors = ai.findById(id);
+    public AuthorSlugDto getAuthorsSlugDtoById(String slug) {
+        AuthorsEntity authors = ai.findBySlug(slug);
         AuthorSlugDto authorsDto = new AuthorSlugDto();
         authorsDto.setId(authors.getId());
+        authorsDto.setSlug(authors.getSlug());
         authorsDto.setName(authors.getName());
         authorsDto.setPhoto(authors.getPhoto());
         authorsDto.setDescription(authors.getDescription());
@@ -63,5 +65,11 @@ public class AuthorsService {
     public List<BooksDto> getBooksByAuthorId(int offset, int limit, int id) {
         Pageable nextPage = PageRequest.of(offset, limit);
         return bookService.getBooksDtoList(bi.findAllByAuthors(id, nextPage));
+    }
+
+    public void exchangePhoto(String savePath, String slug) {
+        AuthorsEntity author = ai.findBySlug(slug);
+        author.setPhoto(savePath);
+        ai.save(author);
     }
 }

@@ -23,4 +23,8 @@ public interface BooksInterfaces {
 
     List<BooksEntity> getBooksEntitiesByGenres(Pageable nextPage, String slug);
     List<BooksEntity> findAllByAuthors(int id, Pageable pageable);
+
+    BooksEntity findBySlug(String slug);
+
+    BooksEntity save(BooksEntity book);
 }

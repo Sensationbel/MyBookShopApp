@@ -58,4 +58,14 @@ public class BooksJpaServices implements BooksInterfaces {
         return br.findAllByAuthors(pageable, id);
     }
 
+    @Override
+    public BooksEntity findBySlug(String slug) {
+        return br.findBySlug(slug);
+    }
+
+    @Override
+    public BooksEntity save(BooksEntity book) {
+        return br.save(book);
+    }
+
 }

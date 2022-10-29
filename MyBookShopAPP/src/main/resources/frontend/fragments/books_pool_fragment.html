@@ -4,11 +4,13 @@
 </head>
 <body>
 <div class="Card" th:fragment="booksCard">
-    <a class="Card-picture" href="/books/slug.html">
+    <a class="Card-picture"
+       th:href="@{'/books/' + ${book.slug}}"
+       href="/books/slug.html">
         <img src="/assets/img/content/main/card.jpg" th:src="${book.image}" alt="card.jpg"/>
-        <div class="Card-sale" th:with="discount= ${book.discount !=0}"
-             th:class="${discount} ? 'Card-sale' : ''"
-             th:text="${discount} ? ${book.discount} + #{topbar.discount}">
+        <div class="Card-sale" th:if="${book.discount !=0}"
+
+             th:text="${book.discount} + #{topbar.discount}">
         </div>
         <div class="Card-ribbon">
             <span class="Card-ribbonText" th:text="${book.isBestseller != 0} ? #{topbar.bestseller}">Бестселлер</span>
@@ -16,7 +18,8 @@
     </a>
     <div class="Card-content">
         <strong class="Card-title">
-            <a href="/books/slug.html" th:text="${book.title}">Техника</a>
+            <a th:href="@{'/books/' + ${book.slug}}"
+                    href="/books/slug.html" th:text="${book.title}">Техника</a>
         </strong>
         <div class="Card-description" th:text="${book.getAuthors}">Кондратенко Валерий Петрович
         </div>

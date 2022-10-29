@@ -1,9 +1,6 @@
 package com.example.MyBookShopAPP.repositories.jpa_repositories;
 
-import com.example.MyBookShopAPP.model.AuthorsEntity;
 import com.example.MyBookShopAPP.model.BooksEntity;
-import com.example.MyBookShopAPP.model.genre.GenreEntity;
-import org.hibernate.annotations.SQLInsert;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -46,4 +43,7 @@ public interface BooksRepository extends JpaRepository<BooksEntity, Integer> {
             "JOIN Authors a ON a.id = ba.author_id " +
             "WHERE a.id=?1", nativeQuery = true)
     List<BooksEntity> findAllByAuthors(Pageable pageable, int id);
+
+    BooksEntity findBySlug(String slug);
+    BooksEntity save(BooksEntity book);
 }

@@ -23,4 +23,14 @@ public class AuthorsJpaServices implements AuthorsInterfaces {
     public AuthorsEntity findById(int id) {
         return ar.findById(id);
     }
+
+    @Override
+    public AuthorsEntity findBySlug(String slug) {
+        return ar.findBySlug(slug);
+    }
+
+    @Override
+    public AuthorsEntity save(AuthorsEntity author) {
+        return ar.save(author);
+    }
 }

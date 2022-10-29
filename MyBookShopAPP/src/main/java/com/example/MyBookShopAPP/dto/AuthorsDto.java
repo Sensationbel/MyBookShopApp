@@ -10,4 +10,5 @@ public class AuthorsDto {
     private int authorId;
     private String firstName;
     private String lastName;
+    private String slug;
 }

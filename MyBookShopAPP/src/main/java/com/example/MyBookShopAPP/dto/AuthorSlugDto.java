@@ -13,6 +13,7 @@ public class AuthorSlugDto {
     private String name;
     private String photo;
     private String description;
+    private String slug;
 
     private List<BooksDto> books;
 
