@@ -1,5 +1,6 @@
 package com.example.MyBookShopAPP.model.book.file;
 
+import com.example.MyBookShopAPP.model.BooksEntity;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -18,6 +19,13 @@ public class BookFileEntity {
     private String hash;
     @Column(columnDefinition = "VARCHAR(255)", nullable = false)
     private String path;
-    @Column(nullable = false)
+    @Column(name = "type_id",nullable = false)
     private int typeId;
+    @ManyToOne
+    @JoinColumn(name = "book_id",referencedColumnName = "id")
+    private BooksEntity book;
+
+    public String getFileTypeExtension() {
+        return BooksFileType.getFileExtensionString(typeId);
+    }
 }

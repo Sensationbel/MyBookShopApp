@@ -1,9 +1,11 @@
 package com.example.MyBookShopAPP.dto;
 
+import com.example.MyBookShopAPP.model.book.file.BookFileEntity;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Getter
 @Setter
@@ -18,4 +20,5 @@ public class BooksDto {
     private String authors;
     private short isBestseller;
     private short discount;
+    private List<BookFileEntity> bookFileList = new ArrayList<>();
 }

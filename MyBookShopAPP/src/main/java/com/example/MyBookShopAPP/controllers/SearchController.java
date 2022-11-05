@@ -2,6 +2,7 @@ package com.example.MyBookShopAPP.controllers;
 
 import com.example.MyBookShopAPP.dto.BooksPageDto;
 import com.example.MyBookShopAPP.dto.SearchWordDto;
+import com.example.MyBookShopAPP.errors.EmptySearchException;
 import com.example.MyBookShopAPP.service.BookService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -18,11 +19,15 @@ public class SearchController {
 
     @GetMapping(value = {"/", "/{searchWord}"})
     public String getSearchResult(@PathVariable(value = "searchWord", required = false) SearchWordDto searchWordDto,
-                                  Model model){
+                                  Model model) throws EmptySearchException {
+        if(searchWordDto != null){
         model.addAttribute("searchWordDto", searchWordDto);
         model.addAttribute("searchResult",
                 bookService.getPageOfSearchResultBooks(searchWordDto.getExample(),0, 5));
         return "/search/index";
+        }else {
+            throw new EmptySearchException("Search is not possible by null");
+        }
     }
 
     @GetMapping("/page/{searchWord}")

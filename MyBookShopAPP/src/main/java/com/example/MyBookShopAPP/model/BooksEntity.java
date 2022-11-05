@@ -1,13 +1,15 @@
 package com.example.MyBookShopAPP.model;
 
+import com.example.MyBookShopAPP.model.book.file.BookFileEntity;
 import com.example.MyBookShopAPP.model.genre.GenreEntity;
 import com.example.MyBookShopAPP.model.user.UserEntity;
 import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
-import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Set;
 
 @Getter
@@ -52,6 +54,9 @@ public class BooksEntity {
 
     @Column(name = "count_postponed")
     private int countPostponed;
+
+    @OneToMany(mappedBy = "book")
+    private List<BookFileEntity> bookFileList = new ArrayList<>();
 
     @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinTable(name="book2author",

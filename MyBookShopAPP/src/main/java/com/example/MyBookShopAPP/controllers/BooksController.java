@@ -5,17 +5,24 @@ import com.example.MyBookShopAPP.service.AuthorsService;
 import com.example.MyBookShopAPP.service.BookService;
 import com.example.MyBookShopAPP.service.ResourceStorage;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.core.io.ByteArrayResource;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
+import java.nio.file.Path;
 
 
 @Controller
 @RequiredArgsConstructor
 @RequestMapping("/books")
+@Slf4j
 public class BooksController {
 
     private final BookService bookService;
@@ -48,7 +55,7 @@ public class BooksController {
 
     @GetMapping("/{slug}")
     public String bookPage(@PathVariable("slug") String slug, Model model){
-        model.addAttribute("slugBook", bookService.getBooksDtoBySlug(slug));
+        model.addAttribute("slugBook", bookService.getSlugBookDtoBySlug(slug));
         return "/books/slug";
     }
 
@@ -76,6 +83,23 @@ public class BooksController {
                                                @RequestParam("offset") int offset,
                                                @RequestParam("limit") int limit) {
         return new BooksPageDto(authorsService.getBooksByAuthorId(offset, limit, id));
+    }
+
+    @GetMapping("/download/{hash}")
+    public ResponseEntity<ByteArrayResource> bookFile(@PathVariable("hash") String hash) throws IOException {
+        Path path = storage.getBookFilePath(hash);
+        log.info("book file path: " + path);
+
+        MediaType mediaType = storage.getBookFileMime(hash);
+        log.info("book file media type: " + mediaType);
+
+        byte[] data = storage.getBookFileByteArray(hash);
+        log.info("book file data len: " + data.length);
+        return ResponseEntity.ok()
+                .header(HttpHeaders.CONTENT_DISPOSITION, "attachment;filename=" + path.getFileName().toString())
+                .contentType(mediaType)
+                .contentLength(data.length)
+                .body(new ByteArrayResource(data));
     }
 
 }

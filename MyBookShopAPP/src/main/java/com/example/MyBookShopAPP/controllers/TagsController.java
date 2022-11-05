@@ -16,7 +16,6 @@ public class TagsController {
 
     private final GenresService genresService;
     private final TagsService tagsService;
-    private final GenresInterfaces gi;
 
     @ModelAttribute("searchWordDto")
     public SearchWordDto searchWordDto(){

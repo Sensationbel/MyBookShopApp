@@ -1,6 +1,7 @@
 package com.example.MyBookShopAPP.service;
 
 import com.example.MyBookShopAPP.dto.BooksDto;
+import com.example.MyBookShopAPP.dto.SlugBookDto;
 import com.example.MyBookShopAPP.model.BooksEntity;
 import com.example.MyBookShopAPP.model.book.links.Book2AuthorEntity;
 import com.example.MyBookShopAPP.repositories.jpa_interfaces.AuthorsInterfaces;
@@ -34,8 +35,19 @@ public class BookService {
         return books;
     }
 
-    public BooksDto getBooksDtoBySlug(String slug) {
-        return createBooksDto(bi.findBySlug(slug));
+    public SlugBookDto getSlugBookDtoBySlug(String slug) {
+        BooksEntity book = bi.findBySlug(slug);
+        SlugBookDto slugBook = new SlugBookDto();
+        slugBook.setTitle(book.getTitle());
+        slugBook.setAuthor(getAuthors(book));
+        slugBook.setDescription(book.getDescription());
+        slugBook.setSlug(book.getSlug());
+        slugBook.setImage(book.getImage());
+        slugBook.setPrice(book.getPrice());
+        slugBook.setDiscountPrice((int)getPriceOld(book));
+        slugBook.addTags(book.getGenres());
+        slugBook.addBookFileList(book);
+        return slugBook;
     }
 
     private BooksDto createBooksDto(BooksEntity book) {

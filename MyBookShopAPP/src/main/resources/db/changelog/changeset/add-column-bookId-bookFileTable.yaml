@@ -1,0 +1,11 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1-1
+      author: Sensationbel
+      comment: add field book_id
+      changes:
+        - addColumn:
+            tableName: book_file
+            columns:
+              - name: book_id
+              - type: INT

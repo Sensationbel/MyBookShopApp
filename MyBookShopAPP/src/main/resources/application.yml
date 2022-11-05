@@ -37,3 +37,5 @@ spring:
       matching-strategy: ant_path_matcher
 upload:
   path: D:/Spring modul/covers
+download:
+  path: D:/Spring modul/books-file
