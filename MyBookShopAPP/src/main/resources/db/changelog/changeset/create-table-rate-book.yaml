@@ -1,0 +1,40 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1-2
+      author: Sensationbel
+      changes:
+        - createTable:
+            tableName: rate_book
+            columns:
+              - column:
+                  name: id
+                  type: INT
+                  autoIncrement: true
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+              - column:
+                  name: rating_star_one
+                  type: INT
+                  defaultValueNumeric: '0'
+              - column:
+                  name: rating_star_two
+                  type: INT
+                  defaultValueNumeric: '0'
+              - column:
+                  name: rating_star_three
+                  type: INT
+                  defaultValueNumeric: '0'
+              - column:
+                  name: rating_star_four
+                  type: INT
+                  defaultValueNumeric: '0'
+              - column:
+                  name: rating_star_five
+                  type: INT
+                  defaultValueNumeric: '0'
+              - column:
+                  name: book_id
+                  type: INT
+                  constraints:
+                    nullable: false

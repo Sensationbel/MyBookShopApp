@@ -7,9 +7,7 @@ import org.springframework.data.domain.Pageable;
 import java.util.Date;
 import java.util.List;
 
-public interface BooksInterfaces {
-
-    List<BooksEntity> findALL();
+public interface BooksInterface {
 
     Page<BooksEntity> findALL(Pageable pageable);
     Page<BooksEntity> findBooksEntitiesByTitleContaining(String title,
@@ -18,13 +16,13 @@ public interface BooksInterfaces {
     Page<BooksEntity> findAllByPubDateBetweenOrderByPubDate(Date pubDate,
                                                             Date pubDate2,
                                                             Pageable pageable);
-
     Page<BooksEntity> getAllByAvg(Pageable pageable);
-
     List<BooksEntity> getBooksEntitiesByGenres(Pageable nextPage, String slug);
     List<BooksEntity> findAllByAuthors(int id, Pageable pageable);
-
     BooksEntity findBySlug(String slug);
-
     BooksEntity save(BooksEntity book);
+    List<BooksEntity> findAllBySlug(String[] slugs);
+
+    BooksEntity findById(Integer bookId);
+
 }

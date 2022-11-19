@@ -16,7 +16,7 @@ import java.util.stream.Collectors;
 @Setter
 public class SlugBookDto {
 
-
+    private Integer bookId;
     private String slug;
     private String title;
     private String image;

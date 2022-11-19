@@ -4,7 +4,7 @@ import com.example.MyBookShopAPP.model.genre.GenreEntity;
 
 import java.util.List;
 
-public interface GenresInterfaces {
+public interface GenresInterface {
 
     List<GenreEntity> findAllByParentIdIsNull();
     List<GenreEntity> findAllByParentId(int id);

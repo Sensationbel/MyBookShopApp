@@ -2,7 +2,7 @@ package com.example.MyBookShopAPP.service;
 
 import com.example.MyBookShopAPP.dto.TagsDto;
 import com.example.MyBookShopAPP.model.genre.GenreEntity;
-import com.example.MyBookShopAPP.repositories.jpa_interfaces.GenresInterfaces;
+import com.example.MyBookShopAPP.repositories.jpa_interfaces.GenresInterface;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -12,7 +12,7 @@ import java.util.*;
 @RequiredArgsConstructor
 public class TagsService {
 
-    private final GenresInterfaces gi;
+    private final GenresInterface gi;
 
     public List<TagsDto> getPageOfTags() {
 

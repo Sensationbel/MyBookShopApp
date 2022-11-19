@@ -1,7 +1,8 @@
 package com.example.MyBookShopAPP.repositories.jpa_services;
 
+import com.example.MyBookShopAPP.errors.RateBooksChangeException;
 import com.example.MyBookShopAPP.model.BooksEntity;
-import com.example.MyBookShopAPP.repositories.jpa_interfaces.BooksInterfaces;
+import com.example.MyBookShopAPP.repositories.jpa_interfaces.BooksInterface;
 import com.example.MyBookShopAPP.repositories.jpa_repositories.BooksRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -13,14 +14,9 @@ import java.util.List;
 
 @Service
 @RequiredArgsConstructor
-public class BooksJpaServices implements BooksInterfaces {
+public class BooksJpaServices implements BooksInterface {
 
     private final BooksRepository br;
-
-    @Override
-    public List<BooksEntity> findALL() {
-        return br.findAll();
-    }
 
     @Override
     public Page<BooksEntity> findALL(Pageable pageable) {
@@ -66,6 +62,16 @@ public class BooksJpaServices implements BooksInterfaces {
     @Override
     public BooksEntity save(BooksEntity book) {
         return br.save(book);
+    }
+
+    @Override
+    public List<BooksEntity> findAllBySlug(String[] slugs) {
+        return br.findAllBySlugIn(slugs);
+    }
+
+    @Override
+    public BooksEntity findById(Integer bookId) {
+        return br.findById(bookId).orElseThrow();
     }
 
 }

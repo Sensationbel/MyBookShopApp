@@ -4,8 +4,8 @@ import com.example.MyBookShopAPP.dto.AuthorSlugDto;
 import com.example.MyBookShopAPP.dto.AuthorsDto;
 import com.example.MyBookShopAPP.dto.BooksDto;
 import com.example.MyBookShopAPP.model.AuthorsEntity;
-import com.example.MyBookShopAPP.repositories.jpa_interfaces.AuthorsInterfaces;
-import com.example.MyBookShopAPP.repositories.jpa_interfaces.BooksInterfaces;
+import com.example.MyBookShopAPP.repositories.jpa_interfaces.AuthorsInterface;
+import com.example.MyBookShopAPP.repositories.jpa_interfaces.BooksInterface;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -20,8 +20,8 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public class AuthorsService {
 
-    private final AuthorsInterfaces ai;
-    private final BooksInterfaces bi;
+    private final AuthorsInterface ai;
+    private final BooksInterface bi;
     private final BookService bookService;
 
     public Map<String, List<AuthorsDto>> getAuthorsMap() {

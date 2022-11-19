@@ -8,3 +8,12 @@ databaseChangeLog:
   - include:
       file: changeset/add-column-bookId-bookFileTable.yaml
       relativeToChangelogFile: true
+  - include:
+      file: changeset/create-table-rate-book.yaml
+      relativeToChangelogFile: true
+#  - include:
+#      file: changeset/add-defaultValue-table-rate_book.yaml
+#      relativeToChangelogFile: true
+#  - include:
+#      file: changeset/rename-column-in-table-rate-book.yaml
+#      relativeToChangelogFile: true

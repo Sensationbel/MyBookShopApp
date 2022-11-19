@@ -2,13 +2,11 @@ package com.example.MyBookShopAPP.service;
 
 import com.example.MyBookShopAPP.dto.BooksDto;
 import com.example.MyBookShopAPP.dto.GenresDto;
-import com.example.MyBookShopAPP.dto.TagsDto;
 import com.example.MyBookShopAPP.model.BooksEntity;
 import com.example.MyBookShopAPP.model.genre.GenreEntity;
-import com.example.MyBookShopAPP.repositories.jpa_interfaces.BooksInterfaces;
-import com.example.MyBookShopAPP.repositories.jpa_interfaces.GenresInterfaces;
+import com.example.MyBookShopAPP.repositories.jpa_interfaces.BooksInterface;
+import com.example.MyBookShopAPP.repositories.jpa_interfaces.GenresInterface;
 import lombok.RequiredArgsConstructor;
-import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
@@ -20,8 +18,8 @@ import java.util.*;
 @RequiredArgsConstructor
 public class GenresService {
 
-    private final GenresInterfaces gi;
-    private final BooksInterfaces bi;
+    private final GenresInterface gi;
+    private final BooksInterface bi;
     private final BookService bookService;
 
     public List<GenresDto> getParentsListGenresEntity() {

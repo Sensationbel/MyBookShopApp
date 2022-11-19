@@ -2,7 +2,6 @@ package com.example.MyBookShopAPP.controllers;
 
 import com.example.MyBookShopAPP.dto.BooksPageDto;
 import com.example.MyBookShopAPP.dto.SearchWordDto;
-import com.example.MyBookShopAPP.repositories.jpa_interfaces.GenresInterfaces;
 import com.example.MyBookShopAPP.service.GenresService;
 import com.example.MyBookShopAPP.service.TagsService;
 import lombok.RequiredArgsConstructor;

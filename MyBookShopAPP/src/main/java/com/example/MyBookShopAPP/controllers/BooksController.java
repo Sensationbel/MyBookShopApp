@@ -1,10 +1,13 @@
 package com.example.MyBookShopAPP.controllers;
 
 import com.example.MyBookShopAPP.dto.*;
+import com.example.MyBookShopAPP.model.book.rate.RateBooksEntity;
 import com.example.MyBookShopAPP.service.AuthorsService;
 import com.example.MyBookShopAPP.service.BookService;
+import com.example.MyBookShopAPP.service.RateBooksService;
 import com.example.MyBookShopAPP.service.ResourceStorage;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.log4j.Log4j2;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.core.io.ByteArrayResource;
 import org.springframework.http.HttpHeaders;
@@ -15,6 +18,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 import java.nio.file.Path;
 
@@ -22,11 +26,12 @@ import java.nio.file.Path;
 @Controller
 @RequiredArgsConstructor
 @RequestMapping("/books")
-@Slf4j
+@Log4j2
 public class BooksController {
 
     private final BookService bookService;
     private final ResourceStorage storage;
+    private final RateBooksService rateBooksService;
 
     private final AuthorsService authorsService;
 
@@ -56,6 +61,7 @@ public class BooksController {
     @GetMapping("/{slug}")
     public String bookPage(@PathVariable("slug") String slug, Model model){
         model.addAttribute("slugBook", bookService.getSlugBookDtoBySlug(slug));
+        model.addAttribute("rateBooks", rateBooksService.getStatisticRate(slug));
         return "/books/slug";
     }
 
@@ -86,7 +92,8 @@ public class BooksController {
     }
 
     @GetMapping("/download/{hash}")
-    public ResponseEntity<ByteArrayResource> bookFile(@PathVariable("hash") String hash) throws IOException {
+    public ResponseEntity<ByteArrayResource> bookFile(@PathVariable("hash") String hash)
+            throws IOException {
         Path path = storage.getBookFilePath(hash);
         log.info("book file path: " + path);
 
@@ -100,6 +107,14 @@ public class BooksController {
                 .contentType(mediaType)
                 .contentLength(data.length)
                 .body(new ByteArrayResource(data));
+    }
+
+    @PostMapping("/rateBook")
+    @ResponseBody
+    public ResponseEntity<?> addRateBook(@RequestParam("bookId") Integer bookId,
+                              @RequestParam("value") Integer value){
+        return ResponseEntity.ok().
+                body(rateBooksService.getResultChangedRateBook(bookId, value));
     }
 
 }

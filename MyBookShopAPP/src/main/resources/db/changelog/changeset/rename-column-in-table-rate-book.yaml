@@ -1,0 +1,33 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1663603372276-1
+      author: Sensationbel
+      changes:
+        - renameTable:
+            oldTableName: rate-book
+            newTableName: rate_book
+        - renameColumn:
+            tableName: rate_book
+            columnDataType: INT
+            newColumnName: rating_star_one
+            oldColumnName: rating-star-one
+        - renameColumn:
+            tableName: rate_book
+            columnDataType: INT
+            newColumnName: rating_star_two
+            oldColumnName: rating-star-two
+        - renameColumn:
+            tableName: rate_book
+            columnDataType: INT
+            newColumnName: rating_star_three
+            oldColumnName: rating-star-three
+        - renameColumn:
+            tableName: rate_book
+            columnDataType: INT
+            newColumnName: rating_star_four
+            oldColumnName: rating-star-four
+        - renameColumn:
+            tableName: rate_book
+            columnDataType: INT
+            newColumnName: rating_star_five
+            oldColumnName: rating-star-five

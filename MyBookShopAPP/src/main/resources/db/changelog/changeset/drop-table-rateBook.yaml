@@ -1,0 +1,7 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1663603372276-1
+      author: Sensationbel
+      changes:
+        - dropTable:
+            tableName: rateBook
