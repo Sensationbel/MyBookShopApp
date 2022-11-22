@@ -1,12 +1,14 @@
 package com.example.MyBookShopAPP.model.user;
 
 import com.example.MyBookShopAPP.model.BooksEntity;
+import com.example.MyBookShopAPP.model.book.review.BookReviewEntity;
 import com.example.MyBookShopAPP.model.book.review.MessageEntity;
 import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -49,11 +51,8 @@ public class UserEntity {
             inverseJoinColumns = @JoinColumn(name = "book_id"))
     private Set<BooksEntity> balanceTransaction;
 
-    @ManyToMany
-    @JoinTable(name = "book_review",
-            joinColumns = @JoinColumn(name = "user_id"),
-            inverseJoinColumns = @JoinColumn(name = "book_id"))
-    private Set<BooksEntity> reviews;
+    @OneToMany(mappedBy = "users")
+    private List<BookReviewEntity> reviewsList;
 
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "user_id", referencedColumnName = "id")

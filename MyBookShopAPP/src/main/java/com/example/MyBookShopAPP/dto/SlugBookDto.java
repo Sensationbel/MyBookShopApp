@@ -24,6 +24,7 @@ public class SlugBookDto {
     private String description;
     private int discountPrice;
     private int price;
+    private boolean isBestseller;
 
     private Map<String, String> tags;
     private List<BookFileEntity> bookFileList = new ArrayList<>();
@@ -34,5 +35,9 @@ public class SlugBookDto {
 
     public void addBookFileList(BooksEntity book) {
         bookFileList.addAll(book.getBookFileList());
+    }
+
+    public void isBestseller(Short value) {
+        isBestseller = value == 1;
     }
 }

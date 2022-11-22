@@ -1,14 +1,9 @@
 package com.example.MyBookShopAPP.controllers;
 
 import com.example.MyBookShopAPP.dto.*;
-import com.example.MyBookShopAPP.model.book.rate.RateBooksEntity;
-import com.example.MyBookShopAPP.service.AuthorsService;
-import com.example.MyBookShopAPP.service.BookService;
-import com.example.MyBookShopAPP.service.RateBooksService;
-import com.example.MyBookShopAPP.service.ResourceStorage;
+import com.example.MyBookShopAPP.service.*;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.core.io.ByteArrayResource;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
@@ -18,9 +13,12 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
-import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.nio.file.Path;
+import java.util.StringJoiner;
 
 
 @Controller
@@ -32,8 +30,8 @@ public class BooksController {
     private final BookService bookService;
     private final ResourceStorage storage;
     private final RateBooksService rateBooksService;
-
     private final AuthorsService authorsService;
+    private final ReviewService reviewService;
 
     @ModelAttribute("searchWordDto")
     public SearchWordDto searchWordDto() {
@@ -59,9 +57,16 @@ public class BooksController {
     }
 
     @GetMapping("/{slug}")
-    public String bookPage(@PathVariable("slug") String slug, Model model){
+    public String bookPage(@PathVariable("slug") String slug,
+                           @CookieValue(value = "booksWithRate", required = false) String booksWithRate,
+                           HttpSession session,
+                           Model model){
+        if(booksWithRate == null || !booksWithRate.contains(slug)){
+            session.setAttribute("isRated", false);
+        } else session.setAttribute("isRated", true);
         model.addAttribute("slugBook", bookService.getSlugBookDtoBySlug(slug));
         model.addAttribute("rateBooks", rateBooksService.getStatisticRate(slug));
+        model.addAttribute("usersReview", reviewService.getUsersReviewByBooksSlug(slug));
         return "/books/slug";
     }
 
@@ -111,8 +116,23 @@ public class BooksController {
 
     @PostMapping("/rateBook")
     @ResponseBody
-    public ResponseEntity<?> addRateBook(@RequestParam("bookId") Integer bookId,
-                              @RequestParam("value") Integer value){
+    public ResponseEntity<?> addRateBook(@RequestParam("bookId") String bookId,
+                                         @RequestParam("value") Integer value,
+                                         HttpServletResponse response,
+                                         @CookieValue(value = "booksWithRate", required = false) String booksWithRate){
+
+        if(booksWithRate == null || booksWithRate.equals("")){
+            Cookie cookie = new Cookie("booksWithRate", bookId);
+            cookie.setPath("/books");
+            response.addCookie(cookie);
+        } else if(!booksWithRate.contains(bookId)){
+            StringJoiner cookieRate = new StringJoiner("/");
+            cookieRate.add(booksWithRate).add(bookId);
+            Cookie cookie = new Cookie("booksWithRate", cookieRate.toString());
+            cookie.setPath("/books");
+            response.addCookie(cookie);
+        }
+        log.info("book with slug " + bookId + " was rated") ;
         return ResponseEntity.ok().
                 body(rateBooksService.getResultChangedRateBook(bookId, value));
     }

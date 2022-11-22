@@ -4,6 +4,7 @@ import com.example.MyBookShopAPP.dto.ChangeRateResult;
 import com.example.MyBookShopAPP.dto.RateDto;
 import com.example.MyBookShopAPP.model.BooksEntity;
 import com.example.MyBookShopAPP.model.book.rate.RateBooksEntity;
+import com.example.MyBookShopAPP.model.user.UserEntity;
 import com.example.MyBookShopAPP.repositories.jpa_interfaces.BooksInterface;
 import com.example.MyBookShopAPP.repositories.jpa_interfaces.RateBooksInterface;
 import lombok.RequiredArgsConstructor;
@@ -18,18 +19,18 @@ public class RateBooksService {
     private final RateBooksInterface ri;
     private final BooksInterface bi;
 
-    public ChangeRateResult getResultChangedRateBook(Integer bookId, Integer value) {
+    public ChangeRateResult getResultChangedRateBook(String slug, Integer value) {
 
-        RateBooksEntity rateBooks = ri.findByBookId(bookId);
+        BooksEntity book = bi.findBySlug(slug);
+        RateBooksEntity rateBooks = ri.findByBookId(book.getId());
         if(rateBooks != null) {
             setRateBooksStar(rateBooks, value);
         } else {
             rateBooks = new RateBooksEntity();
-            rateBooks.setRateBooks(bi.findById(bookId));
+            rateBooks.setRateBooks(book);
             setRateBooksStar(rateBooks, value);
         }
         ri.save(rateBooks);
-
         return new ChangeRateResult();
     }
 

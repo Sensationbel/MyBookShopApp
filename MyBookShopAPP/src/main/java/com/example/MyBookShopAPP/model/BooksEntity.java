@@ -2,6 +2,7 @@ package com.example.MyBookShopAPP.model;
 
 import com.example.MyBookShopAPP.model.book.file.BookFileEntity;
 import com.example.MyBookShopAPP.model.book.rate.RateBooksEntity;
+import com.example.MyBookShopAPP.model.book.review.BookReviewEntity;
 import com.example.MyBookShopAPP.model.genre.GenreEntity;
 import com.example.MyBookShopAPP.model.user.UserEntity;
 import lombok.Getter;
@@ -77,8 +78,8 @@ public class BooksEntity {
     @ManyToMany(mappedBy = "balanceTransaction")
     private Set<UserEntity> userTransaction;
 
-    @ManyToMany(mappedBy = "reviews")
-    private Set<UserEntity> usersReview;
+    @OneToMany(mappedBy = "books")
+    private List<BookReviewEntity> bookReviewList;
 
     @OneToOne(mappedBy = "rateBooks")
     private RateBooksEntity rating;

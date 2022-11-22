@@ -49,6 +49,7 @@ public class BookService {
         slugBook.setDiscountPrice((int)getPriceOld(book));
         slugBook.addTags(book.getGenres());
         slugBook.addBookFileList(book);
+        slugBook.isBestseller((book.getIsBestseller()));
         return slugBook;
     }
 

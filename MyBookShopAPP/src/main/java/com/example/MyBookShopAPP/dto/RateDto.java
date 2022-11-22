@@ -19,13 +19,12 @@ public class RateDto {
 
     private List<Integer> allCountStars;
 
-    public List<Integer> addAllCountStars(){
+    public void addAllCountStars(){
         allCountStars = new ArrayList<>();
         allCountStars.add( this.countStarsOne);
         allCountStars.add(this.countStarsTwo);
         allCountStars.add(this.countStarsThree);
         allCountStars.add(this.countStarsFour);
         allCountStars.add(this.countStarsFive);
-        return allCountStars;
     }
 }

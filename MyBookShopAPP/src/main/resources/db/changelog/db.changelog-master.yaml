@@ -11,9 +11,9 @@ databaseChangeLog:
   - include:
       file: changeset/create-table-rate-book.yaml
       relativeToChangelogFile: true
-#  - include:
-#      file: changeset/add-defaultValue-table-rate_book.yaml
-#      relativeToChangelogFile: true
-#  - include:
-#      file: changeset/rename-column-in-table-rate-book.yaml
-#      relativeToChangelogFile: true
+  - include:
+      file: changeset/add-sqlInsert-table-users.yaml
+      relativeToChangelogFile: true
+  - include:
+      file: changeset/add-sqlInsert-table-book_review.yaml
+      relativeToChangelogFile: true
