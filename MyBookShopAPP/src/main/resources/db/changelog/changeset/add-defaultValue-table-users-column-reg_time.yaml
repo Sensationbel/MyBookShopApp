@@ -1,0 +1,10 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1-7
+      author: Sensationbel
+      comment: add default value into column reg_time
+      changes:
+        - addDefaultValue:
+            columnName: reg_time
+            defaultValueComputed: timezone('UTC', now())
+            tableName: users

@@ -24,7 +24,7 @@ public class UserEntity {
     @Column(columnDefinition = "VARCHAR(255) NOT NULL")
     private String hash;
 
-    @Column(columnDefinition = "TIMESTAMP NOT NULL")
+    @Column(name = "reg_time", columnDefinition = "TIMESTAMP NOT NULL")
     private LocalDateTime regTime;
 
     @Column(columnDefinition = "INT NOT NULL")
@@ -53,6 +53,9 @@ public class UserEntity {
 
     @OneToMany(mappedBy = "users")
     private List<BookReviewEntity> reviewsList;
+
+    @OneToOne(mappedBy = "users")
+    private UserContactEntity userContact;
 
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "user_id", referencedColumnName = "id")

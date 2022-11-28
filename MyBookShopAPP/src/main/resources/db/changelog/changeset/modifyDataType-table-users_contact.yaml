@@ -1,0 +1,21 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1-5
+      author: Sensationbel
+      comment: modify type for column type on ENUM
+      changes:
+        - dropColumn:
+            columnName: type
+            tableName: user_contact
+        - sqlFile:
+            path: sql\modifyDataType-table-users_contact.sql
+            relativeToChangelogFile: true
+            splitStatements: false
+        - addColumn:
+            tableName: user_contact
+            columns:
+              - column:
+                  name: type
+                  type: type_contact
+                  constraints:
+                    nullable: false

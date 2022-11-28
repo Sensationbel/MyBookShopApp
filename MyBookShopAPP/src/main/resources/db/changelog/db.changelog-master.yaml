@@ -17,3 +17,12 @@ databaseChangeLog:
   - include:
       file: changeset/add-sqlInsert-table-book_review.yaml
       relativeToChangelogFile: true
+  - include:
+      file: changeset/modifyDataType-table-users_contact.yaml
+      relativeToChangelogFile: true
+  - include:
+      file: changeset/add-defaultValue-table-user_contact-column-code_time.yaml
+      relativeToChangelogFile: true
+#  - include:
+#      file: changeset/add-defaultValue-table-users-column-reg_time.yaml
+#      relativeToChangelogFile: true

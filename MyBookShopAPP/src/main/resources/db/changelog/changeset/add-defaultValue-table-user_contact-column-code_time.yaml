@@ -1,0 +1,10 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1-6
+      author: Sensationbel
+      comment: add default value into column code_time
+      changes:
+        - addDefaultValue:
+            columnName: code_time
+            defaultValueComputed: timezone('UTC', now())
+            tableName: user_contact
