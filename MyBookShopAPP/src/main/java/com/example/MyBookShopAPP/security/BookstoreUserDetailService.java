@@ -17,7 +17,7 @@ public class BookstoreUserDetailService implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String contact) throws UsernameNotFoundException {
         UserContactEntity user = userContactInterfaces.findByContact(contact);
-        if (user == null) {
+        if (user != null) {
             return new BookstoreUserDetails(user);
         } else {
             throw new UsernameNotFoundException("User not found doh!");

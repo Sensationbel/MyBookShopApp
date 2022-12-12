@@ -5,12 +5,13 @@
     <div class="Header-rowMain">
         <div class="wrap">
             <div class="row">
-                <div class="row-block Header-logo"><a class="logo" href="/"><img class="logo-image"
-                                                                                 src="/assets/img/logo.png"
-                                                                                 alt="logo.png"/><span
-                        class="logo-text">BOOKSHOP</span></a>
+                <div class="row-block Header-logo">
+                    <a class="logo" href="/">
+                        <img class="logo-image" src="/assets/img/logo.png" alt="logo.png"/>
+                        <span class="logo-text">BOOKSHOP</span>
+                    </a>
                 </div>
-                <div class="Header-searchWrap row-block">
+                <div class="Header-searchWrap row-block" th:fragment="header-search">
                     <div class="Header-searchLink">
                         <svg xmlns="http://www.w3.org/2000/svg" width="18" height="19" viewBox="0 0 18 19">
                             <g>
@@ -78,14 +79,14 @@
                 </div>
                 <div class="row-block Header-trigger">
                     <a class="menuTrigger" href="#navigate">
-                        <div class="menuTrigger-content">Показать навигацию
-                        </div>
-                        <span></span><span></span><span></span></a>
+                        <div class="menuTrigger-content">Показать навигацию</div>
+                        <span></span><span></span><span></span>
+                    </a>
                 </div>
             </div>
         </div>
     </div>
-    <div class="Header-menu" th:with="url=${#httpServletRequest.requestURI}">
+    <div class="Header-menu" th:with="url=${#httpServletRequest.requestURI}" th:fragment="header-menu">
         <div class="wrap">
             <nav class="menuModal" id="navigate">
                 <ul class="menu menu_main">

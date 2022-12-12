@@ -6,6 +6,7 @@ import com.example.MyBookShopAPP.model.user.UserEntity;
 import com.example.MyBookShopAPP.repositories.jpa_interfaces.UserContactInterfaces;
 import com.example.MyBookShopAPP.repositories.jpa_interfaces.UsersInterfaces;
 import com.example.MyBookShopAPP.repositories.jpa_services.UsersJpaServices;
+import com.example.MyBookShopAPP.security.jwt.JWTUtil;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -21,7 +22,8 @@ import java.time.LocalDateTime;
 public class UserRegisterServices {
 
     private final UserContactInterfaces userContactInterfaces;
-    private final UsersInterfaces usersInterfaces;
+    private final JWTUtil jwtUtil;
+    private final BookstoreUserDetailService bookstoreUserDetailService;
     private final AuthenticationManager authenticationManager;
     private final PasswordEncoder passwordEncoder;
     public void registerNewUser(RegistrationForm registrationForm) {
@@ -48,7 +50,26 @@ public class UserRegisterServices {
                 payload.getCode()));
         SecurityContextHolder.getContext().setAuthentication(authentication);
         ContactConfirmationResponse response = new ContactConfirmationResponse();
-        response.setResult(true);
+        response.setResult("true");
         return response;
+    }
+
+    public ContactConfirmationResponse jwtLogin(ContactConfirmationPayload payload) {
+        authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(payload.getContact()
+                , payload.getCode()));
+        BookstoreUserDetails userDetails = (BookstoreUserDetails) bookstoreUserDetailService
+                .loadUserByUsername(payload.getContact());
+        String jwtToken = jwtUtil.generateToken(userDetails);
+        ContactConfirmationResponse response = new ContactConfirmationResponse();
+        response.setResult(jwtToken);
+        return response;
+    }
+
+    public Object getCurrentUser() {
+        BookstoreUserDetails userDetails = (BookstoreUserDetails) SecurityContextHolder
+                .getContext()
+                .getAuthentication()
+                .getPrincipal();
+        return userDetails.getUser();
     }
 }

@@ -1,5 +1,10 @@
 server:
   port: 8085
+  servlet:
+    session:
+      tracking-modes: cookie
+auth:
+  secret: bulaukin
 
 spring:
   messages:
@@ -13,6 +18,12 @@ spring:
     user:
       name: admin
       password: 123
+    oauth2:
+      client:
+        registration:
+          facebook:
+            client-id: 5786346641451883
+            client-secret: a9ea1ddcd820349c58e929ac20f9dd73
   datasource:
     url: jdbc:postgresql://localhost:5432/postgres
     username: postgres
@@ -22,7 +33,12 @@ spring:
     hibernate:
       ddl-auto: none
     database-platform: org.hibernate.dialect.PostgreSQLDialect
-#    show-sql: true
+  cache:
+    type: redis
+  redis:
+    host: localhost
+    port: 7001
+  #    show-sql: true
 #    defer-datasource-initialization: false
   #
 #    properties:
@@ -43,3 +59,5 @@ upload:
   path: D:/Spring modul/covers
 download:
   path: D:/Spring modul/books-file
+
+
