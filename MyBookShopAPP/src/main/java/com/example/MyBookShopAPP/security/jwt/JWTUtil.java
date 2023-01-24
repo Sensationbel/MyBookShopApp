@@ -1,8 +1,12 @@
 package com.example.MyBookShopAPP.security.jwt;
 
+import com.example.MyBookShopAPP.errors.JWTTokenInvalidException;
+import com.example.MyBookShopAPP.security.blackList.BlackListingService;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
+import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
@@ -17,6 +21,9 @@ public class JWTUtil {
 
     @Value("${auth.secret}")
     private String secret;
+    @Autowired
+    private BlackListingService blackListingService;
+
 
     private String createToken(Map<String, Object> claims, String username){
         return Jwts
@@ -60,6 +67,15 @@ public class JWTUtil {
 
     public Boolean validateToken(String token, UserDetails userDetails){
         String username = extractUsername(token);
-        return  (username.equals(userDetails.getUsername()) && !isTokenExpired(token));
+        return  (username.equals(userDetails.getUsername())
+                && !isTokenExpired(token));
+    }
+
+    public Boolean isBlackList(String token) throws JWTTokenInvalidException {
+        String blackListToken = blackListingService.getJwtBlackList(token);
+        if( blackListToken == null){
+            return true;
+        }  else throw new JWTTokenInvalidException("Token is into blacklist");
+
     }
 }

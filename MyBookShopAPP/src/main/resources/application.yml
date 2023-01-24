@@ -5,6 +5,8 @@ server:
       tracking-modes: cookie
 auth:
   secret: bulaukin
+jwt:
+  duration: 3000
 
 spring:
   messages:
@@ -50,7 +52,7 @@ spring:
 
   liquibase:
     enabled: true
-    change-log: db/changelog/db.changelog-master.yaml
+
 
   mvc:
     pathmatch:

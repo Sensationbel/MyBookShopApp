@@ -6,18 +6,17 @@ import com.example.MyBookShopAPP.security.ContactConfirmationResponse;
 import com.example.MyBookShopAPP.security.RegistrationForm;
 import com.example.MyBookShopAPP.security.UserRegisterServices;
 import lombok.RequiredArgsConstructor;
-import org.springframework.security.core.context.SecurityContextHolder;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.Cookie;
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 @Controller
 @RequiredArgsConstructor
+@Slf4j
 public class SignInController {
 
     private final UserRegisterServices userRegister;
@@ -68,6 +67,7 @@ public class SignInController {
         ContactConfirmationResponse loginResponse = userRegister.jwtLogin(payload);
         Cookie cookie = new Cookie("token", loginResponse.getResult());
         response.addCookie(cookie);
+        log.info("JWT token {}", loginResponse);
         return loginResponse;
     }
 

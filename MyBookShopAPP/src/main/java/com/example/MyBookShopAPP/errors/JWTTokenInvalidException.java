@@ -12,7 +12,6 @@ public class JWTTokenInvalidException extends Exception{
     private final String message;
     public JWTTokenInvalidException(String message) {
         this.message = message;
-
     }
 
 //    private String getMessage(String name) {

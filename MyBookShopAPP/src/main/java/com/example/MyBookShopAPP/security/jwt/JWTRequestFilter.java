@@ -1,5 +1,6 @@
 package com.example.MyBookShopAPP.security.jwt;
 
+import com.example.MyBookShopAPP.errors.JWTTokenInvalidException;
 import com.example.MyBookShopAPP.security.BookstoreUserDetailService;
 import com.example.MyBookShopAPP.security.BookstoreUserDetails;
 import io.jsonwebtoken.ExpiredJwtException;
@@ -32,7 +33,7 @@ public class JWTRequestFilter extends OncePerRequestFilter {
 
     @Override
     protected void doFilterInternal(HttpServletRequest request, @NonNull HttpServletResponse response,
-                                   @NonNull FilterChain filterChain) throws ServletException, IOException {
+                                    @NonNull FilterChain filterChain) throws ServletException, IOException {
         String token = null;
         String username = null;
         Cookie[] cookies = request.getCookies();
@@ -41,7 +42,9 @@ public class JWTRequestFilter extends OncePerRequestFilter {
                 for (Cookie cookie : cookies) {
                     if (cookie.getName().equals("token")) {
                         token = cookie.getValue();
-                        username = jwtUtil.extractUsername(token);
+                        if (jwtUtil.isBlackList(token)) {
+                            username = jwtUtil.extractUsername(token);
+                        }
                     }
 
                     if (username != null && SecurityContextHolder.getContext().getAuthentication() == null) {
@@ -62,14 +65,13 @@ public class JWTRequestFilter extends OncePerRequestFilter {
                  | MalformedJwtException
                  | UnsupportedJwtException
                  | IllegalArgumentException
-                 | ExpiredJwtException ex) {
+                 | ExpiredJwtException
+                 | JWTTokenInvalidException ex) {
             response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
             log.error(ex);
 //            SecurityContextHolder.getContext().setAuthentication(null);
         } finally {
             filterChain.doFilter(request, response);
         }
-
     }
-
 }

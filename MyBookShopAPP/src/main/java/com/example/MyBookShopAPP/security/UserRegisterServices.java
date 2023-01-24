@@ -4,8 +4,6 @@ import com.example.MyBookShopAPP.model.enums.ContactType;
 import com.example.MyBookShopAPP.model.user.UserContactEntity;
 import com.example.MyBookShopAPP.model.user.UserEntity;
 import com.example.MyBookShopAPP.repositories.jpa_interfaces.UserContactInterfaces;
-import com.example.MyBookShopAPP.repositories.jpa_interfaces.UsersInterfaces;
-import com.example.MyBookShopAPP.repositories.jpa_services.UsersJpaServices;
 import com.example.MyBookShopAPP.security.jwt.JWTUtil;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -26,6 +24,7 @@ public class UserRegisterServices {
     private final BookstoreUserDetailService bookstoreUserDetailService;
     private final AuthenticationManager authenticationManager;
     private final PasswordEncoder passwordEncoder;
+
     public void registerNewUser(RegistrationForm registrationForm) {
 
         if(userContactInterfaces.findByContact(registrationForm.getEmail())==null) {
@@ -41,7 +40,6 @@ public class UserRegisterServices {
             userContact.setUsers(userEntity);
             userContactInterfaces.save(userContact);
         }
-
     }
 
     public ContactConfirmationResponse login(ContactConfirmationPayload payload) {

@@ -58,7 +58,6 @@
               <div class="form-group">
                 <label class="form-label Login-title">Введите e-mail или телефон
                   <br>
-
                   <span th:if="${regOk}">Регистрация прошла успешно!!!</span>
                 </label>
               </div>
@@ -71,14 +70,18 @@
                   </div>
                   <div class="row-block">
                     <label class="toggle Login-type">
-                      <input type="radio" name="typeauth" value="mailtype"/><span class="toggle-box"></span><span class="toggle-text">E-mail</span>
+                      <input type="radio" name="typeauth" value="mailtype"/>
+                      <span class="toggle-box"></span>
+                      <span class="toggle-text">E-mail</span>
                     </label>
                   </div>
                 </div>
               </div>
               <div class="form-group">
-                <input class="form-input form-input_phone" id="phone" name="phone" type="text" placeholder="Введите телефон" data-mask="+7 (999) 999-99-99" data-validate="require"/>
-                <input class="form-input form-input_mail" id="mail" name="mail" type="text" placeholder="Введите e-mail" data-validate="mail require"/>
+                <input class="form-input form-input_phone" id="phone" name="phone" type="text"
+                       placeholder="Введите телефон" data-mask="+7 (999) 999-99-99" data-validate="require"/>
+                <input class="form-input form-input_mail" id="mail" name="mail" type="text"
+                       placeholder="Введите e-mail" data-validate="mail require"/>
               </div>
               <div class="form-group form-group_center">
                 <button class="btn btn_primary form-btn" type="button" name="sendauth" id="sendauth" data-type="phone" data-send="">Далее
@@ -114,10 +117,7 @@
               </div>
             </div>
             <div class="form-group form-group_center">
-              <a class="Login-reg" th:href="@{/signup}"
-                                                         href="/signup.html">Зарегистрироваться
-              </a>
-
+              <a class="Login-reg" th:href="@{/signup}" href="/signup.html">Зарегистрироваться</a>
             </div>
             <div class="form-group form-group_center"><a class="Login-reg" th:href="@{/oauth2/authorization/facebook}"
                                                          href="/signup.html">Войти с Facebook</a>
